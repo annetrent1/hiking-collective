@@ -1,8 +1,8 @@
 [
   {
     "GroupId": 1,
-    "GroupName": "United Front",
-    "StateName": "Organization One",
+    "GroupName": "Cache Valley",
+    "StateName": "Utah",
     "SponsorName": "Natalie Rachelle",
     "SponsorPhone": "555-000-0000",
     "SponsorEmail": "nat214@gmail.com",
@@ -30,7 +30,7 @@
   },
   {
     "GroupId": 2,
-    "GroupName": "Warriors",
+    "GroupName": "Salt Lake Valley",
     "StateName": "Organization Two",
     "SponsorName": "Brittany Ray",
     "SponsorPhone": "555-000-0004",
@@ -53,8 +53,8 @@
   },
   {
     "GroupId": 3,
-    "GroupName": "Strategy One",
-    "StateName": "Organization Three",
+    "GroupName": "Snake River Valley",
+    "StateName": "Idaho",
     "SponsorName": "Zachary Westly",
     "SponsorPhone": "555-000-0012",
     "SponsorEmail": "zwest90@gmail.com",
