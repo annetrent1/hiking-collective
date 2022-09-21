@@ -7,17 +7,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StateCardComponent } from './state-card/state-card.component';
+import { GroupListComponent } from './group-list/group-list.component';
+import { RouterModule } from '@angular/router';
+import { StateListComponent } from './state-list/state-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StateCardComponent
+    StateCardComponent,
+    GroupListComponent,
+    StateListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StatesService } from './services/states.service';
 
 @Component({
   selector: 'app-root',
@@ -8,21 +7,10 @@ import { StatesService } from './services/states.service';
 })
 export class AppComponent implements OnInit{
   title = 'hiking-collective';
-  states = [];
-  constructor(private statesService: StatesService) {}
+  
+  constructor() {}
 
   ngOnInit() {
-    this.statesService.getStates().subscribe({
-      next: (response) => {
-        this.states = response;
-        console.log("STATES: ", response);
-      },
-      error: () => {
-        console.log('oops');
-      },
-      complete: () => {
-        console.log("done");
-      }
-    })
+   
   }
 }
