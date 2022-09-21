@@ -1,22 +1,22 @@
 [
 	{
-		"OrganizationName": "Organization One",
-		"OrganizationId": "Org1",
+		"StateName": "Organization One",
+		"StateId": "Org1",
 		"Description": "This is organization 1"
 	},
 	{
-		"OrganizationName": "Organization Two",
-		"OrganizationId": "Org2",
+		"StateName": "Organization Two",
+		"StateId": "Org2",
 		"Description": "This is organization 2"
     },
     {
-		"OrganizationName": "Organization Three",
-		"OrganizationId": "Org3",
+		"StateName": "Organization Three",
+		"StateId": "Org3",
 		"Description": "This is organization 3" 
 	},
 	{
-		"OrganizationName": "Organization Four",
-		"OrganizationId": "Org4",
+		"StateName": "Organization Four",
+		"StateId": "Org4",
 		"Description": "This is organization 4"
 	}
 ]

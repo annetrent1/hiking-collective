@@ -76,8 +76,8 @@ function getNextId(counterType) {
 function isValidGroup(group) {
   if (group.GroupName == undefined || group.GroupName.trim() == "") return 1;
   if (
-    group.OrganizationName == undefined ||
-    group.OrganizationName.trim() == ""
+    group.StateName == undefined ||
+    group.StateName.trim() == ""
   )
     return 2;
   if (group.SponsorName == undefined || group.SponsorName.trim() == "")
@@ -175,7 +175,7 @@ app.get("/api/groups/byorganization/:id", function (req, res) {
   orgData = JSON.parse(orgData);
 
   let organization = orgData.find(
-    (element) => element.OrganizationId.toLowerCase() == id.toLowerCase()
+    (element) => element.StateId.toLowerCase() == id.toLowerCase()
   );
   if (organization == null) {
     res.status(404).send("Organization Not Found");
@@ -188,7 +188,7 @@ app.get("/api/groups/byorganization/:id", function (req, res) {
 
   // find the matching groups for a specific organization
   let matches = data.filter(
-    (element) => element.OrganizationName == organization.OrganizationName
+    (element) => element.StateName == organization.StateName
   );
 
   console.log("Returned data is: ");
@@ -237,7 +237,7 @@ app.post("/api/groups", urlencodedParser, function (req, res) {
   let group = {
     GroupId: getNextId("group"), // assign id to group
     GroupName: req.body.GroupName,
-    OrganizationName: req.body.OrganizationName,
+    StateName: req.body.StateName,
     SponsorName: req.body.SponsorName,
     SponsorPhone: req.body.SponsorPhone,
     SponsorEmail: req.body.SponsorEmail,
@@ -277,7 +277,7 @@ app.put("/api/groups", urlencodedParser, function (req, res) {
   let group = {
     GroupId: req.body.GroupId, //req.params.id if you use id in URL instead of req.body.GroupId
     GroupName: req.body.GroupName,
-    OrganizationName: req.body.OrganizationName,
+    StateName: req.body.StateName,
     SponsorName: req.body.SponsorName,
     SponsorPhone: req.body.SponsorPhone,
     SponsorEmail: req.body.SponsorEmail,
@@ -305,7 +305,7 @@ app.put("/api/groups", urlencodedParser, function (req, res) {
 
   // update the group
   match.GroupName = group.GroupName;
-  match.OrganizationName = group.OrganizationName;
+  match.StateName = group.StateName;
   match.SponsorName = group.SponsorName;
   match.SponsorPhone = group.SponsorPhone;
   match.SponsorEmail = group.SponsorEmail;

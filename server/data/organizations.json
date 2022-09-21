@@ -1,32 +1,32 @@
 [
 	{
-		"OrganizationName": "Washington",
-		"OrganizationId": "Org1",
+		"StateName": "Washington",
+		"StateId": "Org1",
 		"Description": "This is Washington"
 	},
 	{
-		"OrganizationName": "Idaho",
-		"OrganizationId": "Org2",
+		"StateName": "Idaho",
+		"StateId": "Org2",
 		"Description": "This is Idaho"
     },
     {
-		"OrganizationName": "Oregon",
-		"OrganizationId": "Org3",
+		"StateName": "Oregon",
+		"StateId": "Org3",
 		"Description": "This is Oregon" 
 	},
 	{
-		"OrganizationName": "Utah",
-		"OrganizationId": "Org4",
+		"StateName": "Utah",
+		"StateId": "Org4",
 		"Description": "This is Utah"
 	},
 	{
-		"OrganizationName": "Montana",
-		"OrganizationId": "Org4",
+		"StateName": "Montana",
+		"StateId": "Org4",
 		"Description": "This is Montanta"
 	},
 	{
-		"OrganizationName": "Colorado",
-		"OrganizationId": "Org4",
+		"StateName": "Colorado",
+		"StateId": "Org4",
 		"Description": "This is Colorado"
 	}
 ]

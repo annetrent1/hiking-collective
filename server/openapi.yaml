@@ -11,7 +11,7 @@ servers:
 - url: https://urldefense.com/v3/__http://localhost:8082__;!!Dri3fcY4!jxYE3amiGdaT8LRTefkhqdE7yRAbKvOd6XEZ8Bpwn3yu3Fc8ceZPjWucDElMkI2dGBUwZIVOq4zUJSe3Wo8$ 
   description: Development server
 paths:
-  /api/organizations:
+  /api/states:
     get:
       responses:
         200: 
@@ -22,10 +22,10 @@ paths:
                 type: array
                 items:
                     properties:
-                      OrganizationName:
+                      StateName:
                         type: string
                         example: Organization One
-                      OrganizationId:
+                      StateId:
                         type: string
                         example: Org1
                       Description:
@@ -48,7 +48,7 @@ paths:
                       GroupName:
                         type: string
                         example: United Front
-                      OrganizationName:
+                      StateName:
                         type: string
                         example: Organization One
                       SponsorName:
@@ -132,7 +132,7 @@ paths:
                       GroupName:
                         type: string
                         example: United Front
-                      OrganizationName:
+                      StateName:
                         type: string
                         example: Organization One
                       SponsorName:
@@ -210,7 +210,7 @@ components:
         GroupName:
           type: string
           example: United Front
-        OrganizationName:
+        StateName:
           type: string
           example: Organization One
         SponsorName:
