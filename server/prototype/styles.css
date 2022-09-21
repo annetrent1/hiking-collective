@@ -1,0 +1,83 @@
+:root {
+  --opacity: 60%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  width: clamp(300px, 80%, 1000px);
+}
+
+header {
+  width: 100%;
+}
+
+.header-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-image: url(../assets/idaho.jpg);
+  font-size: 3.5em;
+  height: 100%;
+  /* margin: 0; */
+  padding: 1em;
+}
+
+/* Experiment with background boxes */
+.background-box {
+  width: 100%;
+  color: white;
+  background-size: 100%;
+  background-position: 0%;
+  opacity: var(--opacity);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+nav > .state {
+  display: flex;
+  margin: 10px 0;
+  height: 100px;
+  align-items: center;
+  font-size: 1.2em;
+  padding: 10px;
+}
+
+nav > .state:nth-child(even) {
+  justify-content: flex-end;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#idaho {
+  background-image: url(../assets/idaho.jpg);
+}
+
+#montana {
+  background-image: url(../assets/idaho.jpg);
+}
+
+#oregon {
+  background-image: url(../assets/idaho.jpg);
+}
+
+#utah {
+  background-image: url(../assets/idaho.jpg);
+}
+
+#washington {
+  background-image: url(../assets/idaho.jpg);
+}
+
+#wyoming {
+  background-image: url(../assets/idaho.jpg);
+}
