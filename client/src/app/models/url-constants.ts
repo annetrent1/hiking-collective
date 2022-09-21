@@ -1,0 +1,1 @@
+export const statesURL = "http://localhost:8082/api/organizations"
