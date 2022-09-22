@@ -7,7 +7,7 @@
       <header class="p-d-flex">
         <p-badge value="{{group.Members.length}}/{{group.MaxGroupSize}}"  severity="success"  severity="success"></p-badge>
         <h2>{{ group.GroupName }}</h2>
-        <button pButton type="button" icon="pi pi-pencil"></button>
+        <button pButton type="button" icon="pi pi-pencil" (click)="showDialog()"></button>
       </header>
       <section>
         <p>Hiking Lead: {{group.SponsorName}}</p>
@@ -17,3 +17,6 @@
     </div>
   </ng-template>
 </p-dataView>
+<p-dialog header="Title" [(visible)]="display">
+  <app-group-modal></app-group-modal>
+</p-dialog>
