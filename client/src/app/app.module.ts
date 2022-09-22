@@ -1,34 +1,40 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { BadgeModule } from 'primeng-lts/badge';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { ButtonModule } from 'primeng-lts/button';
 import {CardModule} from 'primeng-lts/card';
-// import {DataViewModule} from 'primeng-lts/dataview';
+import { CommonModule } from '@angular/common';
+import {DataViewModule} from 'primeng-lts/dataview';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StateCardComponent } from './state-card/state-card.component';
+import { AppRoutingModule } from './app-routing.module';
+import { GroupComponent } from './group/group.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { RouterModule } from '@angular/router';
+import { StateCardComponent } from './state-card/state-card.component';
 import { StateListComponent } from './state-list/state-list.component';
-import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StateCardComponent,
+    GroupComponent,
     GroupListComponent,
+    StateCardComponent,
     StateListComponent,
-    GroupComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BadgeModule,
+    ButtonModule,
+    BrowserModule,
     CardModule,
     CommonModule,
-    // DataViewModule,
+    DataViewModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
