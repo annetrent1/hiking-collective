@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+import {CardModule} from 'primeng-lts/card';
+// import {DataViewModule} from 'primeng-lts/dataview';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,9 @@ import { GroupComponent } from './group/group.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CardModule,
     CommonModule,
+    // DataViewModule,
     HttpClientModule,
     RouterModule
   ],
