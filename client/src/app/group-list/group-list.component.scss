@@ -1,0 +1,10 @@
+
+.list-item-wrapper {
+  width: 100%;
+}
+
+:host ::ng-deep {
+  .grid {
+    flex-direction: column;
+  }
+}

@@ -2,11 +2,18 @@
 <!-- <app-group *ngFor="let group of groups" [group]="group"></app-group> -->
 <p-dataView [value]="groups">
   <ng-template pTemplate="header">List of Hiking Groups</ng-template>
-  <ng-template let-group pTemplate="listItem">
-    <header>
-      <p-badge value="{{group.Members.length}}/{{group.MaxGroupSize}}"  severity="success"  severity="success"></p-badge>
-      <h2>{{ group.GroupName }}</h2>
-      <button pButton type="button" icon="pi pi-pencil"></button>
-    </header>
+  <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
+    <div class="p-d-flex">
+      <header class="p-d-flex">
+        <p-badge value="{{group.Members.length}}/{{group.MaxGroupSize}}"  severity="success"  severity="success"></p-badge>
+        <h2>{{ group.GroupName }}</h2>
+        <button pButton type="button" icon="pi pi-pencil"></button>
+      </header>
+      <section>
+        <p>Hiking Lead: {{group.SponsorName}}</p>
+        <p>Email: {{group.SponsorEmail}}</p>
+        <p>Phone: {{group.SponsorPhone}}</p>
+      </section>
+    </div>
   </ng-template>
 </p-dataView>
