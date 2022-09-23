@@ -252,7 +252,7 @@ app.post("/api/groups", urlencodedParser, function (req, res) {
     res.status(400).send("Bad Request - Incorrect or Missing Data");
     return;
   }
-
+  console.log('check')
   let data = fs.readFileSync(__dirname + "/data/groups.json", "utf8");
   data = JSON.parse(data);
 

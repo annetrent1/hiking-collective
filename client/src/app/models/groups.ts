@@ -6,7 +6,7 @@ export class Group {
   SponsorEmail: string;
   SponsorName: string;
   SponsorPhone: string;
-  Member: Member[];
+  Member?: Member[];
   constructor() {
     this.GroupId = 0;
     this.GroupName = '';

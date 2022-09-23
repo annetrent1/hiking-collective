@@ -6,7 +6,8 @@ import { CardModule } from 'primeng-lts/card';
 import { CommonModule } from '@angular/common';
 import { DataViewModule } from 'primeng-lts/dataview';
 import { DialogModule } from 'primeng-lts/dialog';
-import { FormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng-lts/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {InputNumberModule} from 'primeng-lts/inputnumber';
 import { InputTextModule } from 'primeng-lts/inputtext';
@@ -42,10 +43,12 @@ import { StateListComponent } from './state-list/state-list.component';
     CommonModule,
     DataViewModule,
     DialogModule,
+    DropdownModule,
     FormsModule,
     HttpClientModule,
     InputNumberModule,
     InputTextModule,
+    ReactiveFormsModule,
     RouterModule,
     ScrollingModule
   ],

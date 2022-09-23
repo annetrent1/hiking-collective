@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Group } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
 
@@ -11,7 +12,8 @@ export class GroupListComponent implements OnInit {
   groups: Group[] = [];
   display: boolean = false;
 
-  constructor(private groupsService: GroupsService) {}
+  constructor(private groupsService: GroupsService) {
+  }
 
   ngOnInit(): void {
     this.groupsService.getGroups().subscribe({
