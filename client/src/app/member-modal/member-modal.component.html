@@ -1,0 +1,15 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
+  <span class="p-float-label">
+    <input id="member-name" pInputText type="text" pInputText formControlName="MemberName"/>
+    <label for="member-name">Hiker name</label>
+  </span>
+  <span class="p-float-label">
+    <input id="member-phone" pInputText type="text" pInputText formControlName="MemberPhone"/>
+    <label for="member-phone">Hiker phone</label>
+  </span>
+  <span class="p-float-label">
+    <input id="member-email" pInputText type="text" pInputText formControlName="MemberEmail"/>
+    <label for="member-email">Hiker email</label>
+  </span>
+  <button pButton type="submit" label="Add New Group"></button>
+</form>

@@ -31,6 +31,7 @@
         <p>Email: {{ group.SponsorEmail }}</p>
         <p>Phone: {{ group.SponsorPhone }}</p>
       </section>
+      <button routerLink="/members/{{group.GroupName}}" [state]="{group}">Members</button>
     </div>
   </ng-template>
 </p-dataView>
