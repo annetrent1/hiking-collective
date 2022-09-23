@@ -9,6 +9,8 @@ import { Group, Member } from '../models/groups';
 export class MemberListComponent implements OnInit {
   group!: Group;
   members: Member[] = [];
+  display: boolean = false;
+  
   constructor() { 
     if(window.history.state.group) {
       this.group = window.history.state.group;
@@ -20,4 +22,7 @@ export class MemberListComponent implements OnInit {
     console.log("State", window.history.state);
   }
 
+  showDialog() {
+    this.display = true;
+  }
 }

@@ -4,5 +4,14 @@
     <p>{{member.MemberName}}</p>
     <p>{{member.MemberEmail}}</p>
     <p>{{member.MemberPhone}}</p>
+    <p-button
+    label="Add Member"
+    icon="pi pi-plus"
+    iconPos="left"
+    (click)="showDialog()"
+  ></p-button>
   </li>
 </ul>
+<p-dialog header="Add New Member" [(visible)]="display">
+  <app-member-modal [groupId]="group.GroupId"></app-member-modal>
+</p-dialog>

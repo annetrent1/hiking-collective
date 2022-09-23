@@ -23,6 +23,7 @@ import { GroupListComponent } from './group-list/group-list.component';
 import { StateCardComponent } from './state-card/state-card.component';
 import { StateListComponent } from './state-list/state-list.component';
 import { MemberListComponent } from './member-list/member-list.component';
+import { MemberModalComponent } from './member-modal/member-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MemberListComponent } from './member-list/member-list.component';
     StateCardComponent,
     StateListComponent,
     MemberListComponent,
+    MemberModalComponent,
   ],
   imports: [
     AppRoutingModule,
