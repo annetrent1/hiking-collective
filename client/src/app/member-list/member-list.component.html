@@ -1,1 +1,8 @@
-<p>member-list works!</p>
+<app-group [group]="group"></app-group>
+<ul>
+  <li *ngFor="let member of members">
+    <p>{{member.MemberName}}</p>
+    <p>{{member.MemberEmail}}</p>
+    <p>{{member.MemberPhone}}</p>
+  </li>
+</ul>

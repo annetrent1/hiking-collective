@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Group, Member } from '../models/groups';
 
 @Component({
   selector: 'app-member-list',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member-list.component.scss']
 })
 export class MemberListComponent implements OnInit {
-
-  constructor() { }
+  group!: Group;
+  members: Member[] = [];
+  constructor() { 
+    if(window.history.state.group) {
+      this.group = window.history.state.group;
+      this.members = window.history.state.group.Members;
+    }
+  }
 
   ngOnInit(): void {
+    console.log("State", window.history.state);
   }
 
 }
