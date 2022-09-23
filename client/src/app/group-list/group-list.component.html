@@ -1,22 +1,39 @@
 <p>Search will go here</p>
 <!-- <app-group *ngFor="let group of groups" [group]="group"></app-group> -->
 <p-dataView [value]="groups">
-  <ng-template pTemplate="header">List of Hiking Groups</ng-template>
+  <ng-template pTemplate="header"
+    >List of Hiking Groups
+    <p-button
+      label="Add Group"
+      icon="pi pi-plus"
+      iconPos="left"
+      (click)="showDialog()"
+    ></p-button>
+  </ng-template>
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
     <div class="p-d-flex">
       <header class="p-d-flex">
-        <p-badge value="{{group.Members.length}}/{{group.MaxGroupSize}}"  severity="success"  severity="success"></p-badge>
+        <p-badge
+          value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
+          severity="success"
+          severity="success"
+        ></p-badge>
         <h2>{{ group.GroupName }}</h2>
-        <button pButton type="button" icon="pi pi-pencil" (click)="showDialog()"></button>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          (click)="showDialog()"
+        ></button>
       </header>
       <section>
-        <p>Hiking Lead: {{group.SponsorName}}</p>
-        <p>Email: {{group.SponsorEmail}}</p>
-        <p>Phone: {{group.SponsorPhone}}</p>
+        <p>Hiking Lead: {{ group.SponsorName }}</p>
+        <p>Email: {{ group.SponsorEmail }}</p>
+        <p>Phone: {{ group.SponsorPhone }}</p>
       </section>
     </div>
   </ng-template>
 </p-dataView>
-<p-dialog header="Title" [(visible)]="display">
+<p-dialog header="Add New Group" [(visible)]="display">
   <app-group-modal></app-group-modal>
 </p-dialog>

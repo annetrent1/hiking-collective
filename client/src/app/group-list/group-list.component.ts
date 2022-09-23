@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Group } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { GroupsService } from '../services/groups.service';
   styleUrls: ['./group-list.component.scss'],
 })
 export class GroupListComponent implements OnInit {
-  groups = [];
+  groups: Group[] = [];
   display: boolean = false;
 
   constructor(private groupsService: GroupsService) {}

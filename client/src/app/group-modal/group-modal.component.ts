@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group-modal.component.scss']
 })
 export class GroupModalComponent implements OnInit {
-
+  groupName: string = ""
   constructor() { }
 
   ngOnInit(): void {
