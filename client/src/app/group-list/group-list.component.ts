@@ -17,6 +17,7 @@ export class GroupListComponent implements OnInit {
   states: string[] = [];
   selectedState!: string;
   filteredGroups: Group[] = [];
+  selectedGroup: any;
 
   constructor(
     private groupsService: GroupsService,
@@ -50,8 +51,9 @@ export class GroupListComponent implements OnInit {
     });
   }
 
-  showDialog() {
+  showDialog(groupData: any) {
     this.display = true;
+    this.selectedGroup = groupData;
   }
 
   filterState(state: string) {
@@ -62,5 +64,9 @@ export class GroupListComponent implements OnInit {
     } else {
       this.filteredGroups = this.groups;
     }
+  }
+
+  close(evt: boolean) {
+    this.display = !evt;
   }
 }

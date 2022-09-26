@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GroupsService } from '../services/groups.service';
 import { StatesService } from '../services/states.service';
@@ -9,12 +9,32 @@ import { StatesService } from '../services/states.service';
   templateUrl: './group-modal.component.html',
   styleUrls: ['./group-modal.component.scss']
 })
-export class GroupModalComponent implements OnInit {
-  @Input() states: any;
+export class GroupModalComponent implements OnInit, OnChanges {
+  @Input() states!: string[];
   @Input() selectedState!: string;
+  @Input() selectedGroup!: any;
+  @Output() close = new EventEmitter<boolean>();
   groupForm!: FormGroup;
 
   constructor(private stateService: StatesService, private groupService: GroupsService) { 
+    this.setForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.groupForm.untouched){
+      this.setForm();
+      if (this.selectedState && this.groupForm) {
+        this.groupForm.setValue({StateName: this.selectedState});
+      }
+      console.log("selectedState change", this.selectedState);
+      console.log("selectedGroup change", this.selectedGroup);
+    }
+  }
+
+  ngOnInit(): void {
+  }
+  
+  setForm() {
     this.groupForm = new FormGroup({
       GroupName: new FormControl(null, {validators: Validators.required}),
       StateName: new FormControl(null, {validators: Validators.required}),
@@ -22,11 +42,7 @@ export class GroupModalComponent implements OnInit {
       SponsorEmail: new FormControl(null, [Validators.required, Validators.email]),
       SponsorName: new FormControl(null, {validators: Validators.required}),
       SponsorPhone: new FormControl(null, [Validators.required]),
-    }, {updateOn: 'blur'})
-  }
-
-  ngOnInit(): void {
-    console.log("selectedState", this.selectedState);
+    }, {updateOn: 'blur'});
   }
 
   onSubmit(formValues: any): void {
@@ -36,4 +52,11 @@ export class GroupModalComponent implements OnInit {
     )
   }
 
+  closeModal() {
+    this.close.emit(true);
+  }
+  
+  deleteGroup() {
+
+  }
 }

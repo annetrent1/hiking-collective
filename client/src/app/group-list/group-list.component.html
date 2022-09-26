@@ -13,14 +13,19 @@
       />
     </span>
     <span class="p-float-label">
-      <p-dropdown [options]="states" placeholder="Select a State" [(ngModel)]="selectedState" (ngModelChange)="filterState(selectedState)"
-      [showClear]="true"></p-dropdown>
+      <p-dropdown
+        [options]="states"
+        placeholder="Select a State"
+        [(ngModel)]="selectedState"
+        (ngModelChange)="filterState(selectedState)"
+        [showClear]="true"
+      ></p-dropdown>
     </span>
     <p-button
       label="Add Group"
       icon="pi pi-plus"
       iconPos="left"
-      (click)="showDialog()"
+      (click)="showDialog('')"
     ></p-button>
   </ng-template>
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
@@ -31,12 +36,12 @@
           severity="success"
           severity="success"
         ></p-badge>
-        <h2>{{ group.GroupName }} in {{group.StateName}}</h2>
+        <h2>{{ group.GroupName }} in {{ group.StateName }}</h2>
         <button
           pButton
           type="button"
           icon="pi pi-pencil"
-          (click)="showDialog()"
+          (click)="showDialog(group)"
         ></button>
       </header>
       <section>
@@ -50,6 +55,11 @@
     </div>
   </ng-template>
 </p-dataView>
-<p-dialog header="Add New Group" [(visible)]="display">
-  <app-group-modal [states]="states" [selectedState]="selectedState"></app-group-modal>
+<p-dialog [(visible)]="display" [closable]="false">
+  <app-group-modal
+    [states]="states"
+    [selectedState]="selectedState"
+    [selectedGroup]="selectedGroup"
+    (close)="close($event)"
+  ></app-group-modal>
 </p-dialog>
