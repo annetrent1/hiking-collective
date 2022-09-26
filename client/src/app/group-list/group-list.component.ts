@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Group } from '../models/groups';
+import { State } from '../models/states';
 import { GroupsService } from '../services/groups.service';
+import { StatesService } from '../services/states.service';
 
 @Component({
   selector: 'app-group-list',
@@ -11,15 +13,23 @@ import { GroupsService } from '../services/groups.service';
 export class GroupListComponent implements OnInit {
   groups: Group[] = [];
   display: boolean = false;
+  states: string[] = [];
+  selectedState!: string;
+  filteredGroups: Group[] = [];
 
-  constructor(private groupsService: GroupsService) {
+  constructor(private groupsService: GroupsService, private stateService: StatesService) {
+    // if(window.history.state.states) {
+    //   window.history.state.states.forEach((state: { StateName: State; }) => {
+    //     this.states.push(state.StateName)
+    //   });
+    // }
   }
 
   ngOnInit(): void {
     this.groupsService.getGroups().subscribe({
       next: (response) => {
         this.groups = response;
-        console.log('GROUPS: ', response);
+        this.filterState(this.selectedState);
       },
       error: () => {
         console.log('groups oops');
@@ -28,9 +38,28 @@ export class GroupListComponent implements OnInit {
         console.log('groups done');
       },
     });
+    this.stateService.getStates().subscribe(
+      (response) => {
+        response.forEach((state) => {
+          this.states.push(state.StateName);
+        });
+        console.log('check', this.states);
+      }
+    )
+
   }
 
   showDialog() {
     this.display = true;
   }
+
+  filterState(state: string) {
+    console.log('fitler checl', state);
+    if (state) {
+      this.filteredGroups = this.groups.filter( group => group.StateName == state );
+    } else {
+      this.filteredGroups = this.groups;
+    }
+  }
+
 }

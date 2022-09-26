@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GroupsService } from '../services/groups.service';
 import { StatesService } from '../services/states.service';
@@ -10,8 +10,8 @@ import { StatesService } from '../services/states.service';
   styleUrls: ['./group-modal.component.scss']
 })
 export class GroupModalComponent implements OnInit {
+  @Input() states: any;
   groupForm!: FormGroup;
-  states: string[] = [];
 
   constructor(private stateService: StatesService, private groupService: GroupsService) { 
     this.groupForm = new FormGroup({
@@ -25,15 +25,15 @@ export class GroupModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupForm.valueChanges.subscribe(value => console.log("Form Change", value));
-    this.stateService.getStates().subscribe(
-      (response) => {
-        response.forEach((state) => {
-          this.states.push(state.StateName);
-        });
-        console.log('check', this.states);
-      }
-    )
+    // this.groupForm.valueChanges.subscribe(value => console.log("Form Change", value));
+    // this.stateService.getStates().subscribe(
+    //   (response) => {
+    //     response.forEach((state) => {
+    //       this.states.push(state.StateName);
+    //     });
+    //     console.log('check', this.states);
+    //   }
+    // )
   }
 
   onSubmit(formValues: any): void {

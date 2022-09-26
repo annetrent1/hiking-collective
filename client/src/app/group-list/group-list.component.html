@@ -1,6 +1,6 @@
 <p>Search will go here</p>
 <!-- <app-group *ngFor="let group of groups" [group]="group"></app-group> -->
-<p-dataView [value]="groups" #dv filterBy="GroupName">
+<p-dataView [value]="filteredGroups" #dv filterBy="GroupName">
   <ng-template pTemplate="header"
     >List of Hiking Groups
     <span class="p-input-icon-left mb-2 md:mb-0">
@@ -8,9 +8,13 @@
       <input
         type="search"
         pInputText
-        placeholder="Search by Name"
+        placeholder="Search by Group Name"
         (input)="dv.filter($any($event.target)?.value, 'contains')"
       />
+    </span>
+    <span class="p-float-label">
+      <p-dropdown [options]="states" placeholder="Select a State" [(ngModel)]="selectedState" (ngModelChange)="filterState(selectedState)"
+      [showClear]="true"></p-dropdown>
     </span>
     <p-button
       label="Add Group"
@@ -27,7 +31,7 @@
           severity="success"
           severity="success"
         ></p-badge>
-        <h2>{{ group.GroupName }}</h2>
+        <h2>{{ group.GroupName }} in {{group.StateName}}</h2>
         <button
           pButton
           type="button"
@@ -47,5 +51,5 @@
   </ng-template>
 </p-dataView>
 <p-dialog header="Add New Group" [(visible)]="display">
-  <app-group-modal></app-group-modal>
+  <app-group-modal [states]="states"></app-group-modal>
 </p-dialog>
