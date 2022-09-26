@@ -18,11 +18,6 @@ export class GroupListComponent implements OnInit {
   filteredGroups: Group[] = [];
 
   constructor(private groupsService: GroupsService, private stateService: StatesService) {
-    // if(window.history.state.states) {
-    //   window.history.state.states.forEach((state: { StateName: State; }) => {
-    //     this.states.push(state.StateName)
-    //   });
-    // }
   }
 
   ngOnInit(): void {
@@ -54,7 +49,6 @@ export class GroupListComponent implements OnInit {
   }
 
   filterState(state: string) {
-    console.log('fitler checl', state);
     if (state) {
       this.filteredGroups = this.groups.filter( group => group.StateName == state );
     } else {
