@@ -26,7 +26,7 @@ export class GroupListComponent implements OnInit {
     if (this.activatedRoute.snapshot.params.StateName) {
       this.selectedState = this.activatedRoute.snapshot.params.StateName;
     }
-    console.log('ROUTE', this.activatedRoute.snapshot.params.StateName);
+    console.log('ROUTE', this.activatedRoute.snapshot);
   }
 
   ngOnInit(): void {

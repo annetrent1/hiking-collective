@@ -11,6 +11,7 @@ import { StatesService } from '../services/states.service';
 })
 export class GroupModalComponent implements OnInit {
   @Input() states: any;
+  @Input() selectedState!: string;
   groupForm!: FormGroup;
 
   constructor(private stateService: StatesService, private groupService: GroupsService) { 
@@ -25,15 +26,7 @@ export class GroupModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.groupForm.valueChanges.subscribe(value => console.log("Form Change", value));
-    // this.stateService.getStates().subscribe(
-    //   (response) => {
-    //     response.forEach((state) => {
-    //       this.states.push(state.StateName);
-    //     });
-    //     console.log('check', this.states);
-    //   }
-    // )
+    console.log("selectedState", this.selectedState);
   }
 
   onSubmit(formValues: any): void {
