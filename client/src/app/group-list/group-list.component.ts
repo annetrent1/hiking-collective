@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Group } from '../models/groups';
 import { State } from '../models/states';
 import { GroupsService } from '../services/groups.service';
@@ -17,7 +18,15 @@ export class GroupListComponent implements OnInit {
   selectedState!: string;
   filteredGroups: Group[] = [];
 
-  constructor(private groupsService: GroupsService, private stateService: StatesService) {
+  constructor(
+    private groupsService: GroupsService,
+    private stateService: StatesService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    if (this.activatedRoute.snapshot.params.StateName) {
+      this.selectedState = this.activatedRoute.snapshot.params.StateName;
+    }
+    console.log('ROUTE', this.activatedRoute.snapshot.params.StateName);
   }
 
   ngOnInit(): void {
@@ -33,15 +42,12 @@ export class GroupListComponent implements OnInit {
         console.log('groups done');
       },
     });
-    this.stateService.getStates().subscribe(
-      (response) => {
-        response.forEach((state) => {
-          this.states.push(state.StateName);
-        });
-        console.log('check', this.states);
-      }
-    )
-
+    this.stateService.getStates().subscribe((response) => {
+      response.forEach((state) => {
+        this.states.push(state.StateName);
+      });
+      console.log('check', this.states);
+    });
   }
 
   showDialog() {
@@ -50,10 +56,11 @@ export class GroupListComponent implements OnInit {
 
   filterState(state: string) {
     if (state) {
-      this.filteredGroups = this.groups.filter( group => group.StateName == state );
+      this.filteredGroups = this.groups.filter(
+        (group) => group.StateName == state
+      );
     } else {
       this.filteredGroups = this.groups;
     }
   }
-
 }

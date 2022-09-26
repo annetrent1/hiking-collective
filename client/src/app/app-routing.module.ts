@@ -8,8 +8,9 @@ import { StateListComponent } from './state-list/state-list.component';
 
 const routes: Routes = [
   { path: '', component: StateListComponent},
-  { path: 'groups', component: GroupListComponent, data: {state: State}},
-  { path: 'members/:GroupName', component: MemberListComponent, data: {Group: Group}}
+  { path: 'groups', component: GroupListComponent},
+  { path: 'groups/:StateName', component: GroupListComponent},
+  { path: 'members/:GroupName', component: MemberListComponent}
 ];
 
 @NgModule({

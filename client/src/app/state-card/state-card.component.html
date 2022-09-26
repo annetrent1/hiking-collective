@@ -1,4 +1,4 @@
-  <p-card [style]="{'background-image': 'url(../../assets/idaho.jpg)'}">
+<p-card [style]="{'background-image': 'url(../../assets/idaho.jpg)'}" routerLink="groups/{{state.StateName}}">
   <ng-template pTemplate="header">{{state.StateName}}</ng-template>
   {{state.Description}}
 </p-card>
