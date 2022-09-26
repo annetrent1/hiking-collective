@@ -1,8 +1,17 @@
 <p>Search will go here</p>
 <!-- <app-group *ngFor="let group of groups" [group]="group"></app-group> -->
-<p-dataView [value]="groups">
+<p-dataView [value]="groups" #dv filterBy="GroupName">
   <ng-template pTemplate="header"
     >List of Hiking Groups
+    <span class="p-input-icon-left mb-2 md:mb-0">
+      <i class="pi pi-search"></i>
+      <input
+        type="search"
+        pInputText
+        placeholder="Search by Name"
+        (input)="dv.filter($any($event.target)?.value, 'contains')"
+      />
+    </span>
     <p-button
       label="Add Group"
       icon="pi pi-plus"
@@ -31,7 +40,9 @@
         <p>Email: {{ group.SponsorEmail }}</p>
         <p>Phone: {{ group.SponsorPhone }}</p>
       </section>
-      <button routerLink="/members/{{group.GroupName}}" [state]="{group}">Members</button>
+      <button routerLink="/members/{{ group.GroupName }}" [state]="{group}">
+        Members
+      </button>
     </div>
   </ng-template>
 </p-dataView>
