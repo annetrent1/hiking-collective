@@ -1,8 +1,7 @@
-<p>Search will go here</p>
-<!-- <app-group *ngFor="let group of groups" [group]="group"></app-group> -->
+<h2>{{ selectedState }}</h2>
 <p-dataView [value]="filteredGroups" #dv filterBy="GroupName">
-  <ng-template pTemplate="header"
-    >List of Hiking Groups
+  <ng-template pTemplate="header">
+    <div class="flex">
     <span class="p-input-icon-left mb-2 md:mb-0">
       <i class="pi pi-search"></i>
       <input
@@ -27,6 +26,7 @@
       iconPos="left"
       (click)="showDialog('')"
     ></p-button>
+  </div>
   </ng-template>
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
     <div class="p-d-flex">
@@ -49,7 +49,11 @@
         <p>Email: {{ group.SponsorEmail }}</p>
         <p>Phone: {{ group.SponsorPhone }}</p>
       </section>
-      <button routerLink="/members/{{ group.GroupName }}" [state]="{group}" (click)="selectGroup(group)">
+      <button
+        routerLink="/members/{{ group.GroupName }}"
+        [state]="{group}"
+        (click)="selectGroup(group)"
+      >
         Members
       </button>
     </div>
