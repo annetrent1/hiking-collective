@@ -26,6 +26,8 @@ export class GroupModalComponent implements OnInit, OnChanges {
   @Input() selectedGroup!: any;
   @Output() close = new EventEmitter<boolean>();
   groupForm!: FormGroup;
+  visible = true;
+  isNewGroup!: boolean;
 
   constructor(
     private stateService: StatesService,
@@ -36,42 +38,82 @@ export class GroupModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.groupForm.untouched) {
-      this.setForm();
-      if (this.selectedState && this.groupForm) {
-        this.groupForm.setValue({ StateName: this.selectedState });
-      }
-      console.log('selectedState change', this.selectedState);
-      console.log('selectedGroup change', this.selectedGroup);
+    // if (this.groupForm.untouched) {
+    //   this.setForm();
+    //   if (this.selectedState && this.groupForm) {
+    //     this.groupForm.setValue({ StateName: this.selectedState });
+    //   }
+    //   console.log('selectedState change', this.selectedState);
+    //   console.log('selectedGroup change', this.selectedGroup);
+    // }
+  }
+
+  ngOnInit(): void {
+    console.log('selectedState', this.selectedState);
+    console.log('selectedGroup ', this.selectedGroup);
+    if (this.selectedGroup) {
+      this.groupForm = new FormGroup(
+        {
+          GroupName: new FormControl(this.selectedGroup.GroupName, { validators: Validators.required }),
+          StateName: new FormControl(
+            this.selectedGroup.StateName,
+            { validators: Validators.required }
+          ),
+          MaxGroupSize: new FormControl(this.selectedGroup.MaxGroupSize, {
+            validators: Validators.required,
+          }),
+          SponsorEmail: new FormControl(this.selectedGroup.SponsorEmail, [
+            Validators.required,
+            Validators.email,
+          ]),
+          SponsorName: new FormControl(this.selectedGroup.SponsorName, {
+            validators: Validators.required,
+          }),
+          SponsorPhone: new FormControl(this.selectedGroup.SponsorPhone, [Validators.required]),
+        },
+        { updateOn: 'blur' }
+      );
+      this.isNewGroup = false;
+    } else {
+      this.groupForm = new FormGroup(
+        {
+          GroupName: new FormControl(null, { validators: Validators.required }),
+          StateName: new FormControl(
+            this.selectedState ? this.selectedState : null,
+            { validators: Validators.required }
+          ),
+          MaxGroupSize: new FormControl(null, {
+            validators: Validators.required,
+          }),
+          SponsorEmail: new FormControl(null, [
+            Validators.required,
+            Validators.email,
+          ]),
+          SponsorName: new FormControl(null, {
+            validators: Validators.required,
+          }),
+          SponsorPhone: new FormControl(null, [Validators.required]),
+        },
+        { updateOn: 'blur' }
+      );
+      this.isNewGroup = true;
     }
   }
 
-  ngOnInit(): void {}
-
-  setForm() {
-    this.groupForm = new FormGroup(
-      {
-        GroupName: new FormControl(null, { validators: Validators.required }),
-        StateName: new FormControl(null, { validators: Validators.required }),
-        MaxGroupSize: new FormControl(null, {
-          validators: Validators.required,
-        }),
-        SponsorEmail: new FormControl(null, [
-          Validators.required,
-          Validators.email,
-        ]),
-        SponsorName: new FormControl(null, { validators: Validators.required }),
-        SponsorPhone: new FormControl(null, [Validators.required]),
-      },
-      { updateOn: 'blur' }
-    );
-  }
+  setForm() {}
 
   onSubmit(formValues: any): void {
     console.log('SUBMIT', formValues);
     this.groupService.addGroup(formValues).subscribe((response: any) => {
       console.log('add response', response);
     });
+  }
+
+  onUpdate(formValues: any): void {
+    console.log('Edit', formValues);
+    // this.groupService.addGroup(formValues).subscribe((response: any) => {
+    //   console.log('add response', response);
+    // });
   }
 
   closeModal() {

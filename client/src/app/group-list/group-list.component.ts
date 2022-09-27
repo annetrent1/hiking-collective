@@ -54,6 +54,7 @@ export class GroupListComponent implements OnInit {
   showDialog(groupData: any) {
     this.display = true;
     this.selectedGroup = groupData;
+    console.log('Show Dialog', this.display);
   }
 
   filterState(state: string) {
@@ -67,6 +68,7 @@ export class GroupListComponent implements OnInit {
   }
 
   close(evt: boolean) {
-    this.display = !evt;
+    this.display = false;
+    console.log('close', this.display)
   }
 }

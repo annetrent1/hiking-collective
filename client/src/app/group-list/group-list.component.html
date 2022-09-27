@@ -55,11 +55,11 @@
     </div>
   </ng-template>
 </p-dataView>
-<p-dialog [(visible)]="display" [closable]="false">
-  <app-group-modal
-    [states]="states"
-    [selectedState]="selectedState"
-    [selectedGroup]="selectedGroup"
-    (close)="close($event)"
-  ></app-group-modal>
-</p-dialog>
+
+<app-group-modal
+  *ngIf="display"
+  [states]="states"
+  [selectedState]="selectedState"
+  [selectedGroup]="selectedGroup"
+  (close)="close($event)"
+></app-group-modal>

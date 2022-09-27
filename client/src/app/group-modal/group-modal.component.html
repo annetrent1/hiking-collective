@@ -1,32 +1,83 @@
-<form [formGroup]="groupForm" (ngSubmit)="onSubmit(groupForm.value)">
-  <span class="p-float-label">
-    <p-dropdown [options]="states" formControlName="StateName" placeholder="Select a State"
-	  [showClear]="true"></p-dropdown>
-  </span>
-  <span class="p-float-label">
-    <input id="group-name" pInputText type="text" pInputText formControlName="GroupName"/>
-    <label for="group-name">Hiking group name</label>
-  </span>
-  <span class="p-float-label">
-    <input id="group-name" pInputText type="text" pInputText formControlName="SponsorName"/>
-    <label for="group-name">Hiking lead name</label>
-  </span>
-  <span class="p-float-label">
-    <input id="group-name" pInputText type="text" pInputText formControlName="SponsorPhone"/>
-    <label for="group-name">Hiking lead phone number</label>
-  </span>
-  <span class="p-float-label">
-    <input id="group-name" pInputText type="text" pInputText formControlName="SponsorEmail"/>
-    <label for="group-name">Hiking lead email</label>
-  </span>
-  <span class="p-float-label">
-    <p-inputNumber formControlName="MaxGroupSize" [min]="0" [max]="100"></p-inputNumber>
-    <label for="group-name">Max group size</label>
-  </span>
-  <button pButton type="button" (click)="deleteGroup($event)" label="Delete"></button>
-  <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
-  <button pButton type="submit" label="Add New Group"></button>
-  <p-confirmPopup></p-confirmPopup>
-  <!-- TODO: put component here and popup in component -->
-  <!-- use ngif to show with same logic -->
-</form>
+<p-dialog
+  header="{{ isNewGroup ? 'Add Group' : 'Edit Group' }}"
+  [(visible)]="visible"
+  (onHide)="closeModal()"
+>
+  <form
+    [formGroup]="groupForm"
+    (ngSubmit)="
+      isNewGroup ? onSubmit(groupForm.value) : onUpdate(groupForm.value)
+    "
+  >
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="states"
+        formControlName="StateName"
+        placeholder="Select a State"
+        [showClear]="true"
+      ></p-dropdown>
+    </span>
+    <span class="p-float-label">
+      <input
+        id="group-name"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="GroupName"
+      />
+      <label for="group-name">Hiking group name</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        id="group-name"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="SponsorName"
+      />
+      <label for="group-name">Hiking lead name</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        id="group-name"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="SponsorPhone"
+      />
+      <label for="group-name">Hiking lead phone number</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        id="group-name"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="SponsorEmail"
+      />
+      <label for="group-name">Hiking lead email</label>
+    </span>
+    <span class="p-float-label">
+      <p-inputNumber
+        formControlName="MaxGroupSize"
+        [min]="0"
+        [max]="100"
+      ></p-inputNumber>
+      <label for="group-name">Max group size</label>
+    </span>
+    <button
+      *ngIf="!isNewGroup"
+      pButton
+      type="button"
+      (click)="deleteGroup($event)"
+      label="Delete"
+    ></button>
+    <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
+    <button
+      pButton
+      type="submit"
+      label="{{ isNewGroup ? 'Add New Group' : 'Save' }}"
+    ></button>
+    <p-confirmPopup></p-confirmPopup>
+  </form>
+</p-dialog>
