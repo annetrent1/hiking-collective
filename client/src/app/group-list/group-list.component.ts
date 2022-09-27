@@ -23,12 +23,7 @@ export class GroupListComponent implements OnInit {
     private groupsService: GroupsService,
     private stateService: StatesService,
     private activatedRoute: ActivatedRoute
-  ) {
-    if (this.activatedRoute.snapshot.params.StateName) {
-      this.selectedState = this.activatedRoute.snapshot.params.StateName;
-    }
-    console.log('ROUTE', this.activatedRoute.snapshot);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.groupsService.getGroups().subscribe({
@@ -43,11 +38,22 @@ export class GroupListComponent implements OnInit {
         console.log('groups done');
       },
     });
-    this.stateService.getStates().subscribe((response) => {
-      response.forEach((state) => {
-        this.states.push(state.StateName);
-      });
-      console.log('check', this.states);
+    this.stateService.getStates().subscribe({
+      next: (response) => {
+        response.forEach((state) => {
+          this.states.push(state.StateName);
+        });
+        console.log('check', this.states);
+      },
+      error: () => {
+        console.log('oops');
+      },
+      complete: () => {
+        console.log('complete');
+        if (this.activatedRoute.snapshot.params.StateName) {
+          this.selectedState = this.activatedRoute.snapshot.params.StateName;
+        }
+      },
     });
   }
 
@@ -58,6 +64,7 @@ export class GroupListComponent implements OnInit {
   }
 
   filterState(state: string) {
+    console.log('Filter', this.selectedState);
     if (state) {
       this.filteredGroups = this.groups.filter(
         (group) => group.StateName == state
@@ -69,7 +76,7 @@ export class GroupListComponent implements OnInit {
 
   close(evt: boolean) {
     this.display = false;
-    console.log('close', this.display)
+    console.log('close', this.display);
   }
 
   selectGroup(group: Group) {

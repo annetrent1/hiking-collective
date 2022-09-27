@@ -1,36 +1,38 @@
 <h2>{{ selectedState }}</h2>
 <p-dataView [value]="filteredGroups" #dv filterBy="GroupName">
   <ng-template pTemplate="header">
-    <div class="flex">
-    <span class="p-input-icon-left mb-2 md:mb-0">
-      <i class="pi pi-search"></i>
-      <input
-        type="search"
-        pInputText
-        placeholder="Search by Group Name"
-        (input)="dv.filter($any($event.target)?.value, 'contains')"
-      />
-    </span>
-    <span class="p-float-label">
-      <p-dropdown
-        [options]="states"
-        placeholder="Select a State"
-        [(ngModel)]="selectedState"
-        (ngModelChange)="filterState(selectedState)"
-        [showClear]="true"
-      ></p-dropdown>
-    </span>
-    <p-button
-      label="Add Group"
-      icon="pi pi-plus"
-      iconPos="left"
-      (click)="showDialog('')"
-    ></p-button>
-  </div>
+    <div class="flex justify-content-between">
+      <div class="flex">
+        <span class="p-input-icon-left mb-2 md:mb-0">
+          <i class="pi pi-search"></i>
+          <input
+            type="search"
+            pInputText
+            placeholder="Search by Group Name"
+            (input)="dv.filter($any($event.target)?.value, 'contains')"
+          />
+        </span>
+        <span class="p-float-label">
+          <p-dropdown
+            [options]="states"
+            placeholder="Select a State"
+            [(ngModel)]="selectedState"
+            (ngModelChange)="filterState(selectedState)"
+            [showClear]="true"
+          ></p-dropdown>
+        </span>
+      </div>
+      <p-button
+        label="Add Group"
+        icon="pi pi-plus"
+        iconPos="left"
+        (click)="showDialog('')"
+      ></p-button>
+    </div>
   </ng-template>
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
-    <div class="p-d-flex">
-      <header class="p-d-flex">
+    <div>
+      <header class="flex justify-content-between">
         <p-badge
           value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
           severity="success"
