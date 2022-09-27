@@ -24,11 +24,11 @@ export class GroupsService {
     return results;
   }
 
-  // editGroup(group: Group): Observable<any> {
-  //   const results = this.http.put(groupsURL, group, this.jsonContentTypeHeaders);
-  //   console.log("RESULT", results);
-  //   return results;
-  // }
+  editGroup(group: Group): Observable<any> {
+    const results = this.http.put(groupsURL, group, this.jsonContentTypeHeaders);
+    console.log("RESULT", results);
+    return results;
+  }
 
   // deleteGroup(groupId: number): Observable<any> {
   //   const results = this.http.delete(`${groupsURL}/${groupId}`, this.jsonContentTypeHeaders);

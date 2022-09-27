@@ -70,6 +70,7 @@ export class GroupModalComponent implements OnInit, OnChanges {
             validators: Validators.required,
           }),
           SponsorPhone: new FormControl(this.selectedGroup.SponsorPhone, [Validators.required]),
+          GroupId: new FormControl(this.selectedGroup.GroupId),
         },
         { updateOn: 'blur' }
       );
@@ -111,9 +112,9 @@ export class GroupModalComponent implements OnInit, OnChanges {
 
   onUpdate(formValues: any): void {
     console.log('Edit', formValues);
-    // this.groupService.addGroup(formValues).subscribe((response: any) => {
-    //   console.log('add response', response);
-    // });
+    this.groupService.editGroup(formValues).subscribe((response: any) => {
+      console.log('edit response', response);
+    });
   }
 
   closeModal() {
