@@ -49,7 +49,7 @@
         <p>Email: {{ group.SponsorEmail }}</p>
         <p>Phone: {{ group.SponsorPhone }}</p>
       </section>
-      <button routerLink="/members/{{ group.GroupName }}" [state]="{group}">
+      <button routerLink="/members/{{ group.GroupName }}" [state]="{group}" (click)="selectGroup(group)">
         Members
       </button>
     </div>

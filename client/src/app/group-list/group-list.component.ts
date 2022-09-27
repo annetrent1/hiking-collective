@@ -71,4 +71,8 @@ export class GroupListComponent implements OnInit {
     this.display = false;
     console.log('close', this.display)
   }
+
+  selectGroup(group: Group) {
+    this.groupsService.currentGroup.next(group);
+  }
 }

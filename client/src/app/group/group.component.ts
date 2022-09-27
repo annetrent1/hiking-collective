@@ -8,10 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GroupComponent implements OnInit {
   @Input() group: any;
 
-  constructor() { }
+  constructor() { 
+    console.log("GROUP: ", this.group);
+  }
 
   ngOnInit(): void {
-    console.log("GROUP: ", this.group);
   }
 
 }

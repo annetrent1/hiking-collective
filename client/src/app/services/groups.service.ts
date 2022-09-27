@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { groupsURL } from '../models/url-constants';
 
@@ -11,6 +11,7 @@ export class GroupsService {
   jsonContentTypeHeaders = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
   };
+  currentGroup: Subject<Group> = new Subject<Group>();
 
   constructor(private http: HttpClient) { }
 
