@@ -31,33 +31,39 @@
     </div>
   </ng-template>
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
-    <div>
-      <header class="flex justify-content-between">
-        <p-badge
-          value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
-          severity="success"
-          severity="success"
-        ></p-badge>
-        <h2>{{ group.GroupName }} in {{ group.StateName }}</h2>
+    <div class="flex flex-row">
+      <div class="group-content">
+        <header class="flex justify-content-between">
+          <p-badge
+            value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
+            severity="success"
+            severity="success"
+          ></p-badge>
+          <h2>{{ group.GroupName }} in {{ group.StateName }}</h2>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            (click)="showDialog(group)"
+          ></button>
+        </header>
+        <section>
+          <p>Hiking Lead: {{ group.SponsorName }}</p>
+          <p>Email: {{ group.SponsorEmail }}</p>
+          <p>Phone: {{ group.SponsorPhone }}</p>
+        </section>
+      </div>
+      <div>
         <button
           pButton
-          type="button"
-          icon="pi pi-pencil"
-          (click)="showDialog(group)"
-        ></button>
-      </header>
-      <section>
-        <p>Hiking Lead: {{ group.SponsorName }}</p>
-        <p>Email: {{ group.SponsorEmail }}</p>
-        <p>Phone: {{ group.SponsorPhone }}</p>
-      </section>
-      <button
-        routerLink="/members/{{ group.GroupName }}"
-        [state]="{group}"
-        (click)="selectGroup(group)"
-      >
-        Members
-      </button>
+          icon="pi pi-angle-right"
+          routerLink="/members/{{ group.GroupName }}"
+          [state]="{group}"
+          (click)="selectGroup(group)"
+          class="member-button p-button-text"
+        >
+        </button>
+      </div>
     </div>
   </ng-template>
 </p-dataView>

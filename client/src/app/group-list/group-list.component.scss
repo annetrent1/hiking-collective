@@ -7,6 +7,14 @@ h2 {
   height: 2em;
 }
 
+.member-button {
+  height: 100%;
+}
+
+.group-content {
+  width: 100%;
+}
+
 :host ::ng-deep {
   .grid {
     flex-direction: column;
