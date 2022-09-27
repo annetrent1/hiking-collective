@@ -24,9 +24,33 @@ export class GroupsService {
     return results;
   }
 
+  // editGroup(group: Group): Observable<any> {
+  //   const results = this.http.put(groupsURL, group, this.jsonContentTypeHeaders);
+  //   console.log("RESULT", results);
+  //   return results;
+  // }
+
+  // deleteGroup(groupId: number): Observable<any> {
+  //   const results = this.http.delete(`${groupsURL}/${groupId}`, this.jsonContentTypeHeaders);
+  //   console.log("RESULT", results);
+  //   return results;
+  // }
+
   addMember(member: Member, groupId: any) {
     const results = this.http.post(`${groupsURL}/${groupId}/members`, member, this.jsonContentTypeHeaders);
     console.log("RESULT", results);
     return results;
   }
+
+  // editMember(member: Member, groupId: number): Observable<any> {
+  //   const results = this.http.put(`${groupsURL}/${groupId}`/members, member, this.jsonContentTypeHeaders);
+  //   console.log("RESULT", results);
+  //   return results;
+  // }
+
+  // deleteMember(memberId: number, groupId: number): Observable<any> {
+  //   const results = this.http.delete(`${groupsURL}/${groupId}`/members/${memberId}`, this.jsonContentTypeHeaders);
+  //   console.log("RESULT", results);
+  //   return results;
+  // }
 }

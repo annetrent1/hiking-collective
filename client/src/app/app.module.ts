@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ButtonModule } from 'primeng-lts/button';
 import { CardModule } from 'primeng-lts/card';
 import { CommonModule } from '@angular/common';
+import {ConfirmPopupModule} from 'primeng-lts/confirmpopup';
 import { DataViewModule } from 'primeng-lts/dataview';
 import { DialogModule } from 'primeng-lts/dialog';
 import {DropdownModule} from 'primeng-lts/dropdown';
@@ -14,6 +15,7 @@ import { InputTextModule } from 'primeng-lts/inputtext';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ConfirmationService } from 'primeng-lts/api';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +47,7 @@ import { MemberModalComponent } from './member-modal/member-modal.component';
     BrowserModule,
     CardModule,
     CommonModule,
+    ConfirmPopupModule,
     DataViewModule,
     DialogModule,
     DropdownModule,
@@ -56,7 +59,7 @@ import { MemberModalComponent } from './member-modal/member-modal.component';
     RouterModule,
     ScrollingModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

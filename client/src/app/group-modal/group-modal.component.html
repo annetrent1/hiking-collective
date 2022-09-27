@@ -23,7 +23,8 @@
     <p-inputNumber formControlName="MaxGroupSize" [min]="0" [max]="100"></p-inputNumber>
     <label for="group-name">Max group size</label>
   </span>
-  <button pButton type="button" (click)="deleteGroup()" label="Cancel"></button>
+  <button pButton type="button" (click)="deleteGroup($event)" label="Delete"></button>
   <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
   <button pButton type="submit" label="Add New Group"></button>
+  <p-confirmPopup></p-confirmPopup>
 </form>
