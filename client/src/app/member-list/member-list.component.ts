@@ -10,6 +10,7 @@ export class MemberListComponent implements OnInit {
   group!: Group;
   members: Member[] = [];
   display: boolean = false;
+  selectedMember!: Member
   
   constructor() { 
     if(window.history.state.group) {
@@ -22,7 +23,13 @@ export class MemberListComponent implements OnInit {
     console.log("State", window.history.state);
   }
 
-  showDialog() {
+  showDialog(memberData: any) {
+    this.selectedMember = memberData
     this.display = true;
+  }
+
+  close(evt: boolean) {
+    this.display = false;
+    console.log('close', this.display)
   }
 }

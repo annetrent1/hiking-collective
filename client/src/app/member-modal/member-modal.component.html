@@ -1,4 +1,5 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
+<p-dialog header="Add New Member" [(visible)]="display" (onHide)="closeModal()">
+<form [formGroup]="memberForm" (ngSubmit)="isNewMember ? onSubmit(memberForm.value): onUpdate(memberForm.value)">
   <span class="p-float-label">
     <input id="member-name" pInputText type="text" pInputText formControlName="MemberName"/>
     <label for="member-name">Hiker name</label>
@@ -11,5 +12,19 @@
     <input id="member-email" pInputText type="text" pInputText formControlName="MemberEmail"/>
     <label for="member-email">Hiker email</label>
   </span>
-  <button pButton type="submit" label="Add New Member"></button>
+  <button
+      *ngIf="!isNewMember"
+      pButton
+      type="button"
+      (click)="deleteMember($event)"
+      label="Delete"
+    ></button>
+    <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
+    <button
+      pButton
+      type="submit"
+      label="{{ isNewMember ? 'Add New Member' : 'Save' }}"
+    ></button>
+    <p-confirmPopup></p-confirmPopup>
 </form>
+</p-dialog>

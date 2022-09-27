@@ -20,7 +20,7 @@ import { StatesService } from '../services/states.service';
   templateUrl: './group-modal.component.html',
   styleUrls: ['./group-modal.component.scss'],
 })
-export class GroupModalComponent implements OnInit, OnChanges {
+export class GroupModalComponent implements OnInit {
   @Input() states!: string[];
   @Input() selectedState!: string;
   @Input() selectedGroup!: any;
@@ -35,17 +35,6 @@ export class GroupModalComponent implements OnInit, OnChanges {
     private confService: ConfirmationService
   ) {
     this.setForm();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // if (this.groupForm.untouched) {
-    //   this.setForm();
-    //   if (this.selectedState && this.groupForm) {
-    //     this.groupForm.setValue({ StateName: this.selectedState });
-    //   }
-    //   console.log('selectedState change', this.selectedState);
-    //   console.log('selectedGroup change', this.selectedGroup);
-    // }
   }
 
   ngOnInit(): void {

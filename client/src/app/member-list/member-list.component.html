@@ -1,17 +1,25 @@
 <app-group [group]="group"></app-group>
+<p-button
+  label="Add Member"
+  icon="pi pi-plus"
+  iconPos="left"
+  (click)="showDialog('')"
+></p-button>
 <ul>
   <li *ngFor="let member of members">
-    <p>{{member.MemberName}}</p>
-    <p>{{member.MemberEmail}}</p>
-    <p>{{member.MemberPhone}}</p>
+    <p>{{ member.MemberName }}</p>
+    <p>{{ member.MemberEmail }}</p>
+    <p>{{ member.MemberPhone }}</p>
     <p-button
-    label="Add Member"
-    icon="pi pi-plus"
-    iconPos="left"
-    (click)="showDialog()"
-  ></p-button>
+      type="button"
+      icon="pi pi-pencil"
+      (click)="showDialog(member)"
+    ></p-button>
   </li>
 </ul>
-<p-dialog header="Add New Member" [(visible)]="display">
-  <app-member-modal [groupId]="group.GroupId"></app-member-modal>
-</p-dialog>
+<app-member-modal
+  *ngIf="display"
+  [groupId]="group.GroupId"
+  (close)="close($event)"
+  [selectedMember]="selectedMember"
+></app-member-modal>
