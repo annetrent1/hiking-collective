@@ -128,7 +128,10 @@ export class GroupModalComponent implements OnInit, OnChanges {
       message: 'Are you sure that you want to proceed?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        //confirm action
+        console.log('delete confirm', this.selectedGroup.GroupId);
+        this.groupService.deleteGroup(this.selectedGroup.GroupId).subscribe((response: any) => {
+          console.log('delete response', response);
+        });
         this.closeModal();
       },
       reject: () => {

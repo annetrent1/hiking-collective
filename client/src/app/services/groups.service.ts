@@ -30,11 +30,12 @@ export class GroupsService {
     return results;
   }
 
-  // deleteGroup(groupId: number): Observable<any> {
-  //   const results = this.http.delete(`${groupsURL}/${groupId}`, this.jsonContentTypeHeaders);
-  //   console.log("RESULT", results);
-  //   return results;
-  // }
+  deleteGroup(groupId: number): Observable<any> {
+    console.log('delete url: ', `${groupsURL}/${groupId}`)
+    const results = this.http.delete(`${groupsURL}/${groupId}`, this.jsonContentTypeHeaders);
+    console.log("RESULT", results);
+    return results;
+  }
 
   addMember(member: Member, groupId: any) {
     const results = this.http.post(`${groupsURL}/${groupId}/members`, member, this.jsonContentTypeHeaders);
