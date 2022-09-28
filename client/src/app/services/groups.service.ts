@@ -20,6 +20,12 @@ export class GroupsService {
     this.groups$.next(groups);
   }
 
+  refreshGroups() {
+    this.getGroups().subscribe(
+      (result) => {console.log('result: ', result)}
+    )
+  }
+
   getGroups(): Observable<Group[]> {
     this.http
       .get<Group[]>(groupsURL)

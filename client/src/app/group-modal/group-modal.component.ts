@@ -96,6 +96,7 @@ export class GroupModalComponent implements OnInit {
     console.log('SUBMIT', formValues);
     this.groupService.addGroup(formValues).subscribe((response: any) => {
       console.log('add response', response);
+      this.groupService.refreshGroups();
       this.closeModal();
     });
   }
@@ -104,6 +105,7 @@ export class GroupModalComponent implements OnInit {
     console.log('Edit', formValues);
     this.groupService.editGroup(formValues).subscribe((response: any) => {
       console.log('edit response', response);
+      this.groupService.refreshGroups();
     });
     this.closeModal();
   }
