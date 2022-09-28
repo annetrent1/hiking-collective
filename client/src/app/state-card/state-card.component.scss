@@ -7,7 +7,9 @@ $side: 30px;
     background-color: rgba(0,0,0, .5);
     opacity: .6;
     height: 100%;
-    cursor: pointer;
+  }
+  .p-card:hover {
+    opacity: .75;
   }
 }
 
@@ -15,7 +17,7 @@ h2 {
   position: absolute;
   top: 30%;
   font-size: 2.3em;
-  opacity: .7;
+  opacity: .6;
 }
 
 .left {
@@ -29,4 +31,5 @@ h2 {
 .state-container {
   position: relative;
   height: 150px;
+  cursor: pointer;
 }
