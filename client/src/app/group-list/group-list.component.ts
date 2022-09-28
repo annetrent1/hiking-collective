@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Group } from '../models/groups';
@@ -22,13 +22,15 @@ export class GroupListComponent implements OnInit {
   constructor(
     private groupsService: GroupsService,
     private stateService: StatesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.groupsService.getGroups().subscribe({
       next: (response) => {
         this.groups = response;
+        this.cd.markForCheck();
       },
       error: () => {
         console.log('groups oops');

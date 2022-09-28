@@ -1,7 +1,8 @@
-<p-card
-[style]="{ 'background-image': 'url(../../assets/idaho.jpg)' }"
-  routerLink="groups/{{ state.StateName }}"
->
-  <ng-template pTemplate="header">{{ state.StateName }}</ng-template>
-  {{ state.Description }}
-</p-card>
+<div class="state-container">
+  <p-card
+    [style]="{ 'background-image': 'url(../../assets/idaho.jpg)' }"
+    routerLink="groups/{{ state.StateName }}"
+  >
+  </p-card>
+  <h2 [ngClass]="left ? 'left': 'right'" >{{ state.StateName }}</h2>
+</div>

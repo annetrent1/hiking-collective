@@ -8,10 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StateCardComponent implements OnInit {
   @Input() state: any;
+  @Input() left!: boolean;
   
   constructor() { }
 
   ngOnInit(): void {
+    console.log('LEFT', this.left)
   }
 
 }

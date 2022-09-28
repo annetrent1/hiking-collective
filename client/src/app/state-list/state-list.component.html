@@ -15,4 +15,4 @@
   quidem omnis similique.
 </p>
 <button pButton routerLink="groups" class="p-button-text" icon="pi pi-angle-right" iconPos="right">View all groups</button>
-<app-state-card *ngFor="let state of states" [state]="state"></app-state-card>
+<app-state-card *ngFor="let state of states; index as i" [state]="state" class="state-card flex flex-column" [left]="i % 2 === 0 ? true : false"></app-state-card>

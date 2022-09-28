@@ -1,0 +1,32 @@
+$side: 30px;
+
+:host ::ng-deep {
+  .p-card {
+    background-size: 100%;
+    background-position: center;
+    background-color: rgba(0,0,0, .5);
+    opacity: .6;
+    height: 100%;
+    cursor: pointer;
+  }
+}
+
+h2 {
+  position: absolute;
+  top: 30%;
+  font-size: 2.3em;
+  opacity: .7;
+}
+
+.left {
+  left: $side;
+}
+
+.right {
+  right: $side;
+}
+
+.state-container {
+  position: relative;
+  height: 150px;
+}
