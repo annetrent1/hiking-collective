@@ -8,76 +8,87 @@
     (ngSubmit)="
       isNewGroup ? onSubmit(groupForm.value) : onUpdate(groupForm.value)
     "
+    class="flex flex-column gap-3"
   >
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="state-name">State: </label>
       <p-dropdown
+        id="state-name"
         [options]="states"
         formControlName="StateName"
         placeholder="Select a State"
         [showClear]="true"
       ></p-dropdown>
     </span>
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="group-name">Hiking group name: </label>
       <input
         id="group-name"
         pInputText
         type="text"
-        pInputText
         formControlName="GroupName"
       />
-      <label for="group-name">Hiking group name</label>
     </span>
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="group-name">Hiking lead name: </label>
       <input
         id="group-name"
         pInputText
         type="text"
-        pInputText
         formControlName="SponsorName"
       />
-      <label for="group-name">Hiking lead name</label>
     </span>
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="group-name">Hiking lead phone number</label>
       <input
         id="group-name"
         pInputText
         type="text"
-        pInputText
         formControlName="SponsorPhone"
       />
-      <label for="group-name">Hiking lead phone number</label>
     </span>
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="group-name">Hiking lead email</label>
       <input
         id="group-name"
         pInputText
         type="text"
-        pInputText
         formControlName="SponsorEmail"
       />
-      <label for="group-name">Hiking lead email</label>
     </span>
-    <span class="p-float-label">
+    <span class="flex flex-column">
+      <label for="group-name">Max group size</label>
       <p-inputNumber
         formControlName="MaxGroupSize"
         [min]="0"
         [max]="100"
       ></p-inputNumber>
-      <label for="group-name">Max group size</label>
     </span>
-    <button
-      *ngIf="!isNewGroup"
-      pButton
-      type="button"
-      (click)="deleteGroup($event)"
-      label="Delete"
-    ></button>
-    <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
-    <button
-      pButton
-      type="submit"
-      label="{{ isNewGroup ? 'Add New Group' : 'Save' }}"
-    ></button>
+    <div class="flex justify-content-between">
+      <div>
+        <button
+          *ngIf="!isNewGroup"
+          pButton
+          type="button"
+          (click)="deleteGroup($event)"
+          label="Delete"
+          class="p-button-danger"
+        ></button>
+      </div>
+      <div class="flex gap-1">
+        <button
+          pButton
+          type="reset"
+          (click)="closeModal()"
+          label="Cancel"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="{{ isNewGroup ? 'Add Group' : 'Save' }}"
+        ></button>
+      </div>
+    </div>
     <p-confirmPopup></p-confirmPopup>
   </form>
 </p-dialog>

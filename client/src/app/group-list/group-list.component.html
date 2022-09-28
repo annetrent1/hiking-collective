@@ -2,14 +2,15 @@
 <p-dataView [value]="filteredGroups" #dv filterBy="GroupName">
   <ng-template pTemplate="header">
     <div class="flex justify-content-between">
-      <div class="flex">
-        <span class="p-input-icon-left mb-2 md:mb-0">
+      <div class="flex w-8">
+        <span class="p-input-icon-left mb-2 md:mb-0 w-10">
           <i class="pi pi-search"></i>
           <input
             type="search"
             pInputText
             placeholder="Search by Group Name"
             (input)="dv.filter($any($event.target)?.value, 'contains')"
+            class="w-12"
           />
         </span>
         <span class="p-float-label">

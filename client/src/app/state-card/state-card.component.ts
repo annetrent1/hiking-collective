@@ -13,7 +13,6 @@ export class StateCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('LEFT', this.left)
   }
 
 }

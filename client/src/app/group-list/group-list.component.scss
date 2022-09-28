@@ -5,6 +5,8 @@
 
 h2 {
   height: 2em;
+  text-align: center;
+  margin: 0;
 }
 
 .member-button {
@@ -13,6 +15,10 @@ h2 {
 
 .group-content {
   width: 100%;
+}
+
+header {
+  margin-top: 10px;
 }
 
 .header-container > *{
