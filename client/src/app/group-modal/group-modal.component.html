@@ -30,7 +30,16 @@
       />
     </span>
     <span class="flex flex-column">
-      <label for="group-name">Hiking lead name: </label>
+      <label for="group-name">Max group size</label>
+      <p-inputNumber
+        formControlName="MaxGroupSize"
+        [min]="0"
+        [max]="100"
+      ></p-inputNumber>
+    </span>
+    <p-divider align="left"><p><b>Hiking Lead Information</b></p></p-divider>
+    <span class="flex flex-column">
+      <label for="group-name">Name: </label>
       <input
         id="group-name"
         pInputText
@@ -39,7 +48,7 @@
       />
     </span>
     <span class="flex flex-column">
-      <label for="group-name">Hiking lead phone number</label>
+      <label for="group-name">Phone Number</label>
       <input
         id="group-name"
         pInputText
@@ -48,21 +57,13 @@
       />
     </span>
     <span class="flex flex-column">
-      <label for="group-name">Hiking lead email</label>
+      <label for="group-name">Email</label>
       <input
         id="group-name"
         pInputText
         type="text"
         formControlName="SponsorEmail"
       />
-    </span>
-    <span class="flex flex-column">
-      <label for="group-name">Max group size</label>
-      <p-inputNumber
-        formControlName="MaxGroupSize"
-        [min]="0"
-        [max]="100"
-      ></p-inputNumber>
     </span>
     <div class="flex justify-content-between">
       <div>

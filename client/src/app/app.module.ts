@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import {ConfirmPopupModule} from 'primeng-lts/confirmpopup';
 import { DataViewModule } from 'primeng-lts/dataview';
 import { DialogModule } from 'primeng-lts/dialog';
+import {DividerModule} from 'primeng-lts/divider';
 import {DropdownModule} from 'primeng-lts/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -50,6 +51,7 @@ import { MemberModalComponent } from './member-modal/member-modal.component';
     ConfirmPopupModule,
     DataViewModule,
     DialogModule,
+    DividerModule,
     DropdownModule,
     FormsModule,
     HttpClientModule,
