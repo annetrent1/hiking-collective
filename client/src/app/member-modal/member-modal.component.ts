@@ -44,14 +44,14 @@ export class MemberModalComponent implements OnInit {
   onSubmit(formValues: any): void {
     console.log("SUBMIT", formValues);
     this.groupService.addMember(formValues, this.groupId).subscribe(
-      (response: any) => {console.log("add response", response)}
+      (response: any) => {this.closeModal();}
     )
   }
 
   onUpdate(formValues: any): void {
     console.log('Edit Member', formValues, this.groupId);
     this.groupService.editMember(formValues, this.groupId).subscribe((response: any) => {
-      console.log('edit response', response);
+      this.closeModal();
     });
   }
 

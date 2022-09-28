@@ -1,30 +1,67 @@
 <p-dialog header="Add New Member" [(visible)]="display" (onHide)="closeModal()">
-<form [formGroup]="memberForm" (ngSubmit)="isNewMember ? onSubmit(memberForm.value): onUpdate(memberForm.value)">
-  <span class="p-float-label">
-    <input id="member-name" pInputText type="text" pInputText formControlName="MemberName"/>
-    <label for="member-name">Hiker name</label>
-  </span>
-  <span class="p-float-label">
-    <input id="member-phone" pInputText type="text" pInputText formControlName="MemberPhone"/>
-    <label for="member-phone">Hiker phone</label>
-  </span>
-  <span class="p-float-label">
-    <input id="member-email" pInputText type="text" pInputText formControlName="MemberEmail"/>
-    <label for="member-email">Hiker email</label>
-  </span>
-  <button
-      *ngIf="!isNewMember"
-      pButton
-      type="button"
-      (click)="deleteMember($event)"
-      label="Delete"
-    ></button>
-    <button pButton type="reset" (click)="closeModal()" label="Cancel"></button>
-    <button
-      pButton
-      type="submit"
-      label="{{ isNewMember ? 'Add New Member' : 'Save' }}"
-    ></button>
+  <form
+    [formGroup]="memberForm"
+    (ngSubmit)="
+      isNewMember ? onSubmit(memberForm.value) : onUpdate(memberForm.value)
+    "
+    class="flex flex-column gap-3"
+  >
+    <span class="flex flex-column">
+      <label for="member-name">Hiker name</label>
+      <input
+        id="member-name"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberName"
+      />
+    </span>
+    <span class="flex flex-column">
+      <label for="member-phone">Hiker phone</label>
+      <input
+        id="member-phone"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberPhone"
+      />
+    </span>
+    <span class="flex flex-column">
+      <label for="member-email">Hiker email</label>
+      <input
+        id="member-email"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberEmail"
+      />
+    </span>
+    <div class="flex justify-content-between">
+      <div>
+        <button
+          *ngIf="!isNewMember"
+          pButton
+          type="button"
+          (click)="deleteMember($event)"
+          label="Delete"
+          class="p-button-danger"
+        ></button>
+      </div>
+      <div class="flex gap-1">
+        <button
+          pButton
+          type="reset"
+          (click)="closeModal()"
+          label="Cancel"
+          class="p-button-secondary"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="{{ isNewMember ? 'Add New Member' : 'Save' }}"
+        ></button>
+      </div>
+    </div>
     <p-confirmPopup></p-confirmPopup>
-</form>
+  </form>
 </p-dialog>
