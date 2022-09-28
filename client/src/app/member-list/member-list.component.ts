@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Group, Member } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
@@ -13,7 +14,7 @@ export class MemberListComponent implements OnInit {
   display: boolean = false;
   selectedMember!: Member;
 
-  constructor(private groupService: GroupsService) {
+  constructor(private groupService: GroupsService, private location: Location) {
     if (window.history.state.group) {
       console.log('window history',  window.history.state.group)
       this.group = window.history.state.group;
@@ -39,5 +40,9 @@ export class MemberListComponent implements OnInit {
   close(evt: boolean) {
     this.display = false;
     console.log('close', this.display);
+  }
+
+  back() {
+    this.location.back();
   }
 }

@@ -1,3 +1,9 @@
+<button
+  pButton
+  icon="pi pi-angle-left"
+  (click)="back()"
+  class="member-button p-button-text"
+></button>
 <app-group [group]="group"></app-group>
 <p-button
   label="Add Member"
@@ -6,10 +12,12 @@
   (click)="showDialog('')"
 ></p-button>
 <ul>
-  <li *ngFor="let member of members">
-    <p>{{ member.MemberName }}</p>
-    <p>{{ member.MemberEmail }}</p>
-    <p>{{ member.MemberPhone }}</p>
+  <li *ngFor="let member of members" class="flex justify-content-between">
+    <div>
+      <p>{{ member.MemberName }}</p>
+      <p>{{ member.MemberEmail }}</p>
+      <p>{{ member.MemberPhone }}</p>
+    </div>
     <p-button
       type="button"
       icon="pi pi-pencil"

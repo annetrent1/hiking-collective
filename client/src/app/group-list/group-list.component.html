@@ -33,13 +33,16 @@
   <ng-template let-group pTemplate="listItem" class="list-item-wrapper">
     <div class="flex flex-row">
       <div class="group-content">
-        <header class="flex justify-content-between">
+        <header class="flex justify-content-between align-items-center">
           <p-badge
             value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
             severity="success"
             severity="success"
           ></p-badge>
-          <h2>{{ group.GroupName }} in {{ group.StateName }}</h2>
+          <div class="flex flex-column header-container">
+            <h2>{{ group.GroupName }}</h2>
+            <h3 *ngIf="!selectedState">{{ group.StateName }}</h3>
+          </div>
           <button
             pButton
             type="button"
