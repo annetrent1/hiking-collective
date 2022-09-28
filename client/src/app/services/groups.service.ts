@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { groupsURL } from '../models/url-constants';
 
@@ -11,12 +11,21 @@ export class GroupsService {
   jsonContentTypeHeaders = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
   };
-  currentGroup: Subject<Group> = new Subject<Group>();
+  groups$: BehaviorSubject<Group[]> = new BehaviorSubject<Group[]>([]);
+  currentGroups = this.groups$.asObservable();
 
   constructor(private http: HttpClient) { }
 
+  setGroup(groups: Group[]) {
+    this.groups$.next(groups);
+  }
+
   getGroups(): Observable<Group[]> {
-    return this.http.get<Group[]>(groupsURL);
+    this.http
+      .get<Group[]>(groupsURL)
+      .subscribe((response) => this.setGroup(response));
+    console.log(this.groups$);
+    return this.groups$;
   }
 
   addGroup(group: Group): Observable<any> {

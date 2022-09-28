@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
 
@@ -13,6 +14,7 @@ export class MemberListComponent implements OnInit {
   members: any;
   display: boolean = false;
   selectedMember!: Member;
+  currentGroup!: Observable<Group>;
 
   constructor(private groupService: GroupsService, private location: Location) {
     if (window.history.state.group) {
@@ -24,6 +26,9 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.groupService.currentGroups.subscribe(
+    //   (result) => {console.log('MEMBER RESULT', result)}
+    // )
     // this.groupService.currentGroup.subscribe((data) => {
     //   console.log('Subject Sub', data)
     //   this.group = data;

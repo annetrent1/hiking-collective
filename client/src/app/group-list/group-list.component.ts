@@ -29,7 +29,6 @@ export class GroupListComponent implements OnInit {
     this.groupsService.getGroups().subscribe({
       next: (response) => {
         this.groups = response;
-        this.filterState(this.selectedState);
       },
       error: () => {
         console.log('groups oops');
@@ -53,6 +52,7 @@ export class GroupListComponent implements OnInit {
         if (this.activatedRoute.snapshot.params.StateName) {
           this.selectedState = this.activatedRoute.snapshot.params.StateName;
         }
+        this.filterState(this.selectedState);
       },
     });
   }
@@ -80,6 +80,6 @@ export class GroupListComponent implements OnInit {
   }
 
   selectGroup(group: Group) {
-    this.groupsService.currentGroup.next(group);
+    // this.groupsService.currentGroup.next(group);
   }
 }
