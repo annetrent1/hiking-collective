@@ -34,8 +34,7 @@ export class GroupModalComponent implements OnInit {
     private confService: ConfirmationService,
     private router: Router,
     private messageService: MessageService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     console.log('selectedState', this.selectedState);
@@ -94,30 +93,39 @@ export class GroupModalComponent implements OnInit {
   }
 
   onSubmit(formValues: any): void {
-    console.log('SUBMIT', formValues);
-    this.groupService.addGroup(formValues).subscribe(
-      (response: any) => {
-        this.groupService.groups$.next(formValues);
-        console.log('add response', response);
-        this.selectedState = formValues.StateName;
-        this.router.navigate([`groups/${this.selectedState}`]);
-        this.closeModal();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Confirmed',
-          detail: `${formValues.GroupName} was successfully added!`,
-        });
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: `Something went wrong, ${formValues.GroupName} was not able to be added at this time`,
-        });
-      }
-    );
+    if (this.isValid()) {
+      this.groupService.addGroup(formValues).subscribe(
+        (response: any) => {
+          this.groupService.groups$.next(formValues);
+          this.selectedState = formValues.StateName;
+          this.router.navigate([`groups/${this.selectedState}`]);
+          this.closeModal();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmed',
+            detail: `${formValues.GroupName} was successfully added!`,
+          });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Something went wrong, ${formValues.GroupName} was not able to be added at this time`,
+          });
+        }
+      );
+    }
   }
 
+  isValid(): boolean {
+    console.log('FORM', this.groupForm.valid);
+    if (this.groupForm.valid) {
+      return true;
+    } else {
+      this.groupForm.markAllAsTouched();
+      return false;
+    }
+  }
   // onSubmit(formValues: any): void {
   //   console.log('SUBMIT', formValues);
   //   this.groupService.addGroup(formValues).subscribe((group: any) => {
@@ -130,25 +138,29 @@ export class GroupModalComponent implements OnInit {
   // }
 
   onUpdate(formValues: any): void {
-    console.log('Edit', formValues);
-    this.groupService.editGroup(formValues).subscribe((response: any) => {
-      console.log('edit response', response);
-      this.groupService.groups$.next(formValues);
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Confirmed',
-        detail: `Changes to ${formValues.GroupName} were saved.`,
-      });
-    },
-    () => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: `Something went wrong, changes for ${formValues.GroupName} were not able to be saved at this time`,
-      });
-    });
-    this.router.navigate([`groups/${this.selectedState}`]);
-    this.closeModal();
+    if (this.isValid()) {
+      this.groupService.editGroup(formValues).subscribe(
+        (response: any) => {
+          console.log('edit response', response);
+          this.groupService.groups$.next(formValues);
+          this.selectedState = formValues.StateName;
+          this.router.navigate([`groups/${this.selectedState}`]);
+          this.closeModal();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmed',
+            detail: `Changes to ${formValues.GroupName} were saved.`,
+          });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Something went wrong, changes for ${formValues.GroupName} were not able to be saved at this time`,
+          });
+        }
+      );
+    }
   }
 
   closeModal() {
@@ -163,9 +175,8 @@ export class GroupModalComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         console.log('delete confirm', this.selectedGroup.GroupId);
-        this.groupService
-          .deleteGroup(this.selectedGroup.GroupId)
-          .subscribe((response: any) => {
+        this.groupService.deleteGroup(this.selectedGroup.GroupId).subscribe(
+          (response: any) => {
             console.log('delete response', response);
             // this.groupService.groups$.next(this.groupForm);
             this.router.navigate([`groups/${this.selectedState}`]);
@@ -181,7 +192,8 @@ export class GroupModalComponent implements OnInit {
               summary: 'Error',
               detail: `Something went wrong, ${this.selectedGroup.GroupName} were not able to be removed at this time`,
             });
-          });
+          }
+        );
         this.closeModal();
       },
       reject: () => {
