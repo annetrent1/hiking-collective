@@ -1,4 +1,4 @@
-<p-dialog header="Add New Member" [(visible)]="display" (onHide)="closeModal()">
+<p-dialog header="Add New Hiker" [(visible)]="display" (onHide)="closeModal()">
   <form
     [formGroup]="memberForm"
     (ngSubmit)="
@@ -7,24 +7,36 @@
     class="flex flex-column gap-3"
   >
     <span class="flex flex-column">
-      <label for="member-name">Hiker name</label>
+      <label for="MemberName">Hiker name</label>
       <input
-        id="member-name"
+        id="MemberName"
         pInputText
         type="text"
         pInputText
         formControlName="MemberName"
       />
+      <label
+        for="GroupName"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberName'].valid && memberForm.controls['MemberName'].touched"
+        >Please enter hiker's name</label
+      >
     </span>
     <span class="flex flex-column">
-      <label for="member-phone">Hiker phone</label>
+      <label for="MemberPhone">Hiker phone</label>
       <input
-        id="member-phone"
+        id="MemberPhone"
         pInputText
         type="text"
         pInputText
         formControlName="MemberPhone"
       />
+      <label
+        for="MemberPhone"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberPhone'].valid && memberForm.controls['MemberPhone'].touched"
+        >Please enter hiker's phone</label
+      >
     </span>
     <span class="flex flex-column">
       <label for="member-email">Hiker email</label>
@@ -35,6 +47,12 @@
         pInputText
         formControlName="MemberEmail"
       />
+      <label
+        for="MemberEmail"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberEmail'].valid && memberForm.controls['MemberEmail'].touched"
+        >Please enter hiker's email</label
+      >
     </span>
     <div class="flex justify-content-between">
       <div>
@@ -58,7 +76,7 @@
         <button
           pButton
           type="submit"
-          label="{{ isNewMember ? 'Add New Member' : 'Save' }}"
+          label="{{ isNewMember ? 'Add New Hiker' : 'Save' }}"
         ></button>
       </div>
     </div>
