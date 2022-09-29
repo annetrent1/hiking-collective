@@ -149,7 +149,6 @@ export class GroupModalComponent implements OnInit {
 
           this.router.navigate([`groups`]);
           this.router.navigate([`groups/${this.selectedState}`]);
-          this.closeModal();
           this.messageService.add({
             severity: 'success',
             summary: 'Confirmed',
@@ -162,6 +161,8 @@ export class GroupModalComponent implements OnInit {
             summary: 'Error',
             detail: `Something went wrong, changes for ${formValues.GroupName} were not able to be saved at this time`,
           });
+        }, () => {
+          this.closeModal();
         }
       );
     }
@@ -172,7 +173,6 @@ export class GroupModalComponent implements OnInit {
   }
 
   deleteGroup(event: any) {
-    console.log('EVENT: ', event);
     this.confService.confirm({
       target: event.target,
       message: 'Are you sure that you want to proceed?',
@@ -183,7 +183,6 @@ export class GroupModalComponent implements OnInit {
           (response: any) => {
             console.log('delete response', response);
             // this.groupService.groups$.next(this.groupForm);
-            this.router.navigate([`groups/${this.selectedState}`]);
             this.messageService.add({
               severity: 'success',
               summary: 'Confirmed',
@@ -196,9 +195,15 @@ export class GroupModalComponent implements OnInit {
               summary: 'Error',
               detail: `Something went wrong, ${this.selectedGroup.GroupName} were not able to be removed at this time`,
             });
+          }, () => {
+            this.closeModal();
+            if (this.selectedState) {
+              this.router.navigate([`groups/${this.selectedState}`]);
+            } else {
+              this.router.navigate([`groups`]);
+            }
           }
         );
-        this.closeModal();
       },
       reject: () => {
         //reject action

@@ -75,7 +75,7 @@ export class MemberModalComponent implements OnInit {
             summary: 'Confirmed',
             detail: `${formValues.MemberName} was successfully added!`,
           });
-          this.router.navigate([`members/${this.groupId}`]);
+          // this.router.navigate([`members/${this.groupId}`]);
         },
         () => {
           this.messageService.add({
@@ -91,8 +91,8 @@ export class MemberModalComponent implements OnInit {
   onUpdate(formValues: any): void {
     if (this.isValid()) {
       this.groupService.editMember(formValues, this.groupId).subscribe(
-        (response: any) => {
-          this.router.navigate([`members/${this.groupId}`]);
+        () => {
+          // this.router.navigate([`members/${this.groupId}`]);
           this.closeModal();
           this.messageService.add({
             severity: 'success',
@@ -135,7 +135,8 @@ export class MemberModalComponent implements OnInit {
         this.groupService
           .deleteMember(this.selectedMember.MemberId, this.groupId)
           .subscribe(
-            (response: any) => {
+            () => {
+              this.router.navigate([`members/${this.groupId}`]);
               this.messageService.add({
                 severity: 'success',
                 summary: 'Confirmed',
@@ -148,9 +149,10 @@ export class MemberModalComponent implements OnInit {
                 summary: 'Error',
                 detail: `Something went wrong, ${this.selectedMember.MemberName} were not able to be removed at this time`,
               });
+            }, () => {
+              this.closeModal();
             }
           );
-        this.closeModal();
       },
       reject: () => {},
     });
