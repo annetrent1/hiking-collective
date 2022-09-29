@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import {
   Component,
@@ -33,7 +34,8 @@ export class GroupModalComponent implements OnInit {
     private groupService: GroupsService,
     private confService: ConfirmationService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -143,7 +145,9 @@ export class GroupModalComponent implements OnInit {
         (response: any) => {
           console.log('edit response', response);
           this.groupService.groups$.next(formValues);
-          this.selectedState = formValues.StateName;
+          // this.selectedState = formValues.StateName;
+
+          this.router.navigate([`groups`]);
           this.router.navigate([`groups/${this.selectedState}`]);
           this.closeModal();
           this.messageService.add({

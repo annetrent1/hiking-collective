@@ -29,10 +29,15 @@ export class MemberListComponent implements OnInit {
       this.GroupId = this.activatedRoute.snapshot.params.GroupId;
       console.log('GROUP ID', this.GroupId);
     }
+    this.getGroupMember();
+  }
+
+  getGroupMember() {
     this.groupService.getGroupById(this.GroupId).subscribe({
-      next: (response) => {
+      next: (response: Group) => {
         this.group = response;
         this.members = response.Members;
+        console.log('MEMBER CHECK', this.members);
       },
       error: () => {
         this.messageService.add({
@@ -54,6 +59,7 @@ export class MemberListComponent implements OnInit {
   close(evt: boolean) {
     this.display = false;
     console.log('close', this.display);
+    this.getGroupMember();
   }
 
   back() {
