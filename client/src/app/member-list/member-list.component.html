@@ -30,7 +30,8 @@
   </div>
 </div>
 <p-divider align="left"><h2>Hiker Information</h2></p-divider>
-<ul>
+<p *ngIf="members?.length < 1" class="empty">No hikers are part of this group yet. Press 'Add Member' above to add hikers.</p>
+<ul *ngIf="members?.length > 0">
   <li *ngFor="let member of members" >
     <div class="flex justify-content-between align-items-center">
       <div>
