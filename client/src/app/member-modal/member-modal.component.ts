@@ -88,17 +88,6 @@ export class MemberModalComponent implements OnInit {
     }
   }
 
-  // onSubmit(formValues: any): void {
-  //   console.log('SUBMIT', formValues);
-  //   this.groupService.addGroup(formValues).subscribe((group: any) => {
-  //     console.log('add response', group);
-  //     this.groupService.groups$.next(formValues);
-  //     // routes to the groups so the user can see their group was added
-  //     this.router.navigate([`groups/${this.selectedState}`]);
-  //     this.closeModal();
-  //   });
-  // }
-
   onUpdate(formValues: any): void {
     if (this.isValid()) {
       this.groupService.editMember(formValues, this.groupId).subscribe(

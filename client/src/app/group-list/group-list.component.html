@@ -1,4 +1,4 @@
-<h2>{{ selectedState }}</h2>
+<h2>{{ selectedState ? 'Hiking groups in ' + selectedState : 'All hiking groups' }}</h2>
 <p-dataView [value]="filteredGroups" #dv filterBy="GroupName">
   <ng-template pTemplate="header">
     <div class="flex justify-content-between">

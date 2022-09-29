@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
+import { MessageService } from 'primeng-lts/api';
 
 @Component({
   selector: 'app-member-list',
@@ -18,7 +19,12 @@ export class MemberListComponent implements OnInit {
   selectedMember!: Member;
   currentGroup!: Observable<Group>;
 
-  constructor(private groupService: GroupsService, private location: Location, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private groupService: GroupsService,
+    private location: Location,
+    private activatedRoute: ActivatedRoute,
+    private messageService: MessageService
+  ) {
     if (this.activatedRoute.snapshot.params.GroupId) {
       this.GroupId = this.activatedRoute.snapshot.params.GroupId;
       console.log('GROUP ID', this.GroupId);
@@ -29,16 +35,16 @@ export class MemberListComponent implements OnInit {
         this.members = response.Members;
       },
       error: () => {
-        console.log('groups oops');
-      },
-      complete: () => {
-        console.log('groups done');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `Something went wrong, the group was not able to load`,
+        });
       },
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showDialog(memberData: any) {
     this.selectedMember = memberData;

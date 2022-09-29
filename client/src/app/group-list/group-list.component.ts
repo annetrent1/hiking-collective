@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -5,6 +6,7 @@ import { Group } from '../models/groups';
 import { State } from '../models/states';
 import { GroupsService } from '../services/groups.service';
 import { StatesService } from '../services/states.service';
+import { MessageService } from 'primeng-lts/api';
 
 @Component({
   selector: 'app-group-list',
@@ -23,7 +25,9 @@ export class GroupListComponent implements OnInit {
     private groupsService: GroupsService,
     private stateService: StatesService,
     private activatedRoute: ActivatedRoute,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private location: Location,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -32,11 +36,12 @@ export class GroupListComponent implements OnInit {
         this.groups = response;
       },
       error: () => {
-        console.log('groups oops');
-      },
-      complete: () => {
-        console.log('groups done');
-      },
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `Something went wrong, the groups were not able to load`,
+        });
+      }
     });
     this.stateService.getStates().subscribe({
       next: (response) => {
@@ -46,7 +51,11 @@ export class GroupListComponent implements OnInit {
         console.log('check', this.states);
       },
       error: () => {
-        console.log('oops');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `Something went wrong`,
+        });
       },
       complete: () => {
         console.log('complete');
@@ -65,13 +74,21 @@ export class GroupListComponent implements OnInit {
   }
 
   filterState(state: string) {
-    console.log('Filter', this.selectedState);
+    this.updateRoute(state);
     if (state) {
       this.filteredGroups = this.groups.filter(
         (group) => group.StateName == state
       );
     } else {
       this.filteredGroups = this.groups;
+    }
+  }
+
+  updateRoute(state: string) {
+    if (state) {
+      this.location.replaceState(`groups/${state}`);
+    } else {
+      this.location.replaceState(`groups`);
     }
   }
 
