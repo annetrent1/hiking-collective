@@ -21,7 +21,6 @@ import { ConfirmationService, MessageService } from 'primeng-lts/api';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { GroupComponent } from './group/group.component';
 import { GroupModalComponent } from './group-modal/group-modal.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { StateCardComponent } from './state-card/state-card.component';
@@ -32,7 +31,6 @@ import { MemberModalComponent } from './member-modal/member-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
-    GroupComponent,
     GroupListComponent,
     GroupModalComponent,
     StateCardComponent,
