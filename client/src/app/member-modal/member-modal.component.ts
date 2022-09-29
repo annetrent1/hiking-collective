@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ConfirmationService } from 'primeng-lts/api';
 import { GroupsService } from '../services/groups.service';
@@ -17,7 +18,7 @@ export class MemberModalComponent implements OnInit {
   isNewMember!: boolean;
 
   memberForm!: FormGroup;
-  constructor(private groupService: GroupsService, private confService: ConfirmationService
+  constructor(private groupService: GroupsService, private confService: ConfirmationService, private router: Router
     ) { 
     
   }
@@ -44,9 +45,23 @@ export class MemberModalComponent implements OnInit {
   onSubmit(formValues: any): void {
     console.log("SUBMIT", formValues);
     this.groupService.addMember(formValues, this.groupId).subscribe(
-      (response: any) => {this.closeModal}
+      (response: any) => {
+        this.closeModal();
+        // this.router.navigate([`groups/${this.selectedState}`]);
+      }
     )
   }
+
+  // onSubmit(formValues: any): void {
+  //   console.log('SUBMIT', formValues);
+  //   this.groupService.addGroup(formValues).subscribe((group: any) => {
+  //     console.log('add response', group);
+  //     this.groupService.groups$.next(formValues);
+  //     // routes to the groups so the user can see their group was added
+  //     this.router.navigate([`groups/${this.selectedState}`]);
+  //     this.closeModal();
+  //   });
+  // }
 
   onUpdate(formValues: any): void {
     console.log('Edit Member', formValues, this.groupId);

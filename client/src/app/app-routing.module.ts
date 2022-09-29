@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: StateListComponent},
   { path: 'groups', component: GroupListComponent},
   { path: 'groups/:StateName', component: GroupListComponent},
-  { path: 'members/:GroupName', component: MemberListComponent}
+  { path: 'members/:GroupId', component: MemberListComponent}
 ];
 
 @NgModule({

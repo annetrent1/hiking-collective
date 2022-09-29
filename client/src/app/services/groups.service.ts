@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { groupsURL } from '../models/url-constants';
 
@@ -13,10 +13,17 @@ export class GroupsService {
   };
   groups$: BehaviorSubject<Group[]> = new BehaviorSubject<Group[]>([]);
   currentGroups = this.groups$.asObservable();
+  selectedGroup$: Subject<Group> = new Subject<Group>();
+  selectedGroup = this.selectedGroup$.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  setGroup(groups: Group[]) {
+  setSelectedGroup(group: Group) {
+    console.log('select group service', group)
+    this.selectedGroup$.next(group);
+  }
+
+  setGroups(groups: Group[]) {
     this.groups$.next(groups);
   }
 
@@ -29,9 +36,17 @@ export class GroupsService {
   getGroups(): Observable<Group[]> {
     this.http
       .get<Group[]>(groupsURL)
-      .subscribe((response) => this.setGroup(response));
+      .subscribe((response) => this.setGroups(response));
     console.log(this.groups$);
     return this.groups$;
+  }
+
+  getGroupById(id: number): Observable<Group> {
+    this.http
+      .get<Group>(`${groupsURL}/${id}`)
+      .subscribe((response) => this.setSelectedGroup(response));
+    console.log(this.groups$);
+    return this.selectedGroup$;
   }
 
   addGroup(group: Group): Observable<any> {

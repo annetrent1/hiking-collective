@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Group, Member } from '../models/groups';
 import { GroupsService } from '../services/groups.service';
@@ -11,30 +12,32 @@ import { GroupsService } from '../services/groups.service';
 })
 export class MemberListComponent implements OnInit {
   group!: Group;
+  GroupId!: number;
   members: any;
   display: boolean = false;
   selectedMember!: Member;
   currentGroup!: Observable<Group>;
 
-  constructor(private groupService: GroupsService, private location: Location) {
-    if (window.history.state.group) {
-      console.log('window history',  window.history.state.group)
-      this.group = window.history.state.group;
-      console.log('window history Member',  window.history.state.group.Member)
-      this.members = window.history.state.group.Members;
+  constructor(private groupService: GroupsService, private location: Location, private activatedRoute: ActivatedRoute) {
+    if (this.activatedRoute.snapshot.params.GroupId) {
+      this.GroupId = this.activatedRoute.snapshot.params.GroupId;
+      console.log('GROUP ID', this.GroupId);
     }
+    this.groupService.getGroupById(this.GroupId).subscribe({
+      next: (response) => {
+        this.group = response;
+        this.members = response.Members;
+      },
+      error: () => {
+        console.log('groups oops');
+      },
+      complete: () => {
+        console.log('groups done');
+      },
+    });
   }
 
   ngOnInit(): void {
-    // this.groupService.currentGroups.subscribe(
-    //   (result) => {console.log('MEMBER RESULT', result)}
-    // )
-    // this.groupService.currentGroup.subscribe((data) => {
-    //   console.log('Subject Sub', data)
-    //   this.group = data;
-    //   console.log('Subject group', data.Members)
-    //   this.members = data.Members;
-    // });
   }
 
   showDialog(memberData: any) {

@@ -30,7 +30,6 @@ export class GroupListComponent implements OnInit {
     this.groupsService.getGroups().subscribe({
       next: (response) => {
         this.groups = response;
-        this.cd.markForCheck();
       },
       error: () => {
         console.log('groups oops');
@@ -82,6 +81,6 @@ export class GroupListComponent implements OnInit {
   }
 
   selectGroup(group: Group) {
-    // this.groupsService.currentGroup.next(group);
+    this.groupsService.setSelectedGroup(group);
   }
 }

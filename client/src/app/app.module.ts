@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastModule } from 'primeng-lts/toast';
-import { ConfirmationService } from 'primeng-lts/api';
+import { ConfirmationService, MessageService } from 'primeng-lts/api';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -63,7 +63,7 @@ import { MemberModalComponent } from './member-modal/member-modal.component';
     ScrollingModule,
     ToastModule,
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Event } from '@angular/router';
+import { Event, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng-lts/api';
 // import { ConfirmationService } from 'primeng/api';
 import { GroupsService } from '../services/groups.service';
@@ -32,7 +32,8 @@ export class GroupModalComponent implements OnInit {
   constructor(
     private stateService: StatesService,
     private groupService: GroupsService,
-    private confService: ConfirmationService
+    private confService: ConfirmationService,
+    private router: Router
   ) {
     this.setForm();
   }
@@ -95,18 +96,31 @@ export class GroupModalComponent implements OnInit {
   onSubmit(formValues: any): void {
     console.log('SUBMIT', formValues);
     this.groupService.addGroup(formValues).subscribe((response: any) => {
+      this.groupService.groups$.next(formValues);
       console.log('add response', response);
-      this.groupService.refreshGroups();
+      this.router.navigate([`groups/${this.selectedState}`]);
       this.closeModal();
     });
   }
+
+  // onSubmit(formValues: any): void {
+  //   console.log('SUBMIT', formValues);
+  //   this.groupService.addGroup(formValues).subscribe((group: any) => {
+  //     console.log('add response', group);
+  //     this.groupService.groups$.next(formValues);
+  //     // routes to the groups so the user can see their group was added
+  //     this.router.navigate([`groups/${this.selectedState}`]);
+  //     this.closeModal();
+  //   });
+  // }
 
   onUpdate(formValues: any): void {
     console.log('Edit', formValues);
     this.groupService.editGroup(formValues).subscribe((response: any) => {
       console.log('edit response', response);
-      this.groupService.refreshGroups();
+      this.groupService.groups$.next(formValues);
     });
+    this.router.navigate([`groups/${this.selectedState}`]);
     this.closeModal();
   }
 
@@ -124,6 +138,8 @@ export class GroupModalComponent implements OnInit {
         console.log('delete confirm', this.selectedGroup.GroupId);
         this.groupService.deleteGroup(this.selectedGroup.GroupId).subscribe((response: any) => {
           console.log('delete response', response);
+          // this.groupService.groups$.next(this.groupForm);
+          this.router.navigate([`groups/${this.selectedState}`]);
         });
         this.closeModal();
       },

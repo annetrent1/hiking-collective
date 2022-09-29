@@ -61,8 +61,7 @@
         <button
           pButton
           icon="pi pi-angle-right"
-          routerLink="/members/{{ group.GroupName }}"
-          [state]="{group}"
+          routerLink="/members/{{ group.GroupId }}"
           (click)="selectGroup(group)"
           class="member-button p-button-text"
         >
