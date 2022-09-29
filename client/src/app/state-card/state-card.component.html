@@ -1,6 +1,7 @@
 <div class="state-container">
+  <!-- [style]="{ 'background-image': 'url(../../assets/${state}.jpg)' }" -->
   <p-card
-    [style]="{ 'background-image': 'url(../../assets/idaho.jpg)' }"
+    [style]="{ 'background-image': 'url(../../assets/' + state.StateName + '.jpg)' }"
     routerLink="groups/{{ state.StateName }}"
   >
   </p-card>
