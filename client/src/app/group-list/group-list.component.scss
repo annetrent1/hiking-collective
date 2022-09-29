@@ -32,3 +32,8 @@ header {
     flex-direction: column;
   }
 }
+
+.p-button.p-button-text:enabled:hover {
+  color: var(--blue-800);
+  background-color: var(--blue-100);
+}

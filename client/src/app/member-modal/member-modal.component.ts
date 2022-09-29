@@ -29,12 +29,12 @@ export class MemberModalComponent implements OnInit {
     if (this.selectedMember) {
       this.memberForm = new FormGroup(
         {
-          MemberName: new FormControl(this.selectedMember.MemberName, {
-            validators: Validators.required,
-          }),
-          MemberPhone: new FormControl(this.selectedMember.MemberPhone, {
-            validators: Validators.required,
-          }),
+          MemberName: new FormControl(this.selectedMember.MemberName, [
+            Validators.required, Validators.minLength(4)
+          ]),
+          MemberPhone: new FormControl(this.selectedMember.MemberPhone, [
+            Validators.required,
+          ]),
           MemberEmail: new FormControl(this.selectedMember.MemberEmail, [
             Validators.required,
             Validators.email,
@@ -73,7 +73,7 @@ export class MemberModalComponent implements OnInit {
           summary: 'Confirmed',
           detail: `${formValues.MemberName} was successfully added!`,
         });
-        // this.router.navigate([`groups/${this.selectedState}`]);
+        this.router.navigate([`members/${this.groupId}`]);
       },
       () => {
         this.messageService.add({
@@ -122,7 +122,6 @@ export class MemberModalComponent implements OnInit {
   }
 
   deleteMember(event: any) {
-    console.log('EVENT: ', event);
     this.confService.confirm({
       target: event.target,
       message: 'Are you sure that you want to proceed?',

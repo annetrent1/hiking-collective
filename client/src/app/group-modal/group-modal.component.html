@@ -9,6 +9,7 @@
       isNewGroup ? onSubmit(groupForm.value) : onUpdate(groupForm.value)
     "
     class="flex flex-column gap-3"
+    novalidate
   >
     <span class="flex flex-column">
       <label for="state-name">State: </label>
@@ -23,11 +24,22 @@
     <span class="flex flex-column">
       <label for="group-name">Hiking group name: </label>
       <input
-        id="group-name"
+        id="GroupName"
+        name="GroupName"
         pInputText
         type="text"
         formControlName="GroupName"
+        required
       />
+      <label
+        for="GroupName"
+        class="validate"
+        *ngIf="
+          groupForm.errors?.['GroupName'] &&
+          (groupForm.errors?.['GroupName'].dirty || groupForm.errors?.['GroupName'].touched)
+        "
+        >Please enter group name.</label
+      >
     </span>
     <span class="flex flex-column">
       <label for="group-name">Max group size</label>
@@ -35,7 +47,7 @@
         formControlName="MaxGroupSize"
         [min]="0"
         [max]="50"
-        [showButtons]="true" 
+        [showButtons]="true"
       ></p-inputNumber>
     </span>
     <p-divider align="left"><p>Hiking Lead Information</p></p-divider>
