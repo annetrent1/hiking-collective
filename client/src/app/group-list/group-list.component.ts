@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from '../models/groups';
 import { State } from '../models/states';
@@ -27,8 +26,7 @@ export class GroupListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private location: Location,
-    private messageService: MessageService,
-    private router: Router
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +36,6 @@ export class GroupListComponent implements OnInit {
         response.forEach((state) => {
           this.states.push(state.StateName);
         });
-        console.log('check', this.states);
       },
       error: () => {
         this.messageService.add({
@@ -48,7 +45,6 @@ export class GroupListComponent implements OnInit {
         });
       },
       complete: () => {
-        console.log('complete');
         if (this.activatedRoute.snapshot.params.StateName) {
           this.selectedState = this.activatedRoute.snapshot.params.StateName;
         }
@@ -61,9 +57,7 @@ export class GroupListComponent implements OnInit {
     this.groupsService.getGroups().subscribe({
       next: (response: Group[]) => {
         this.groups = response;
-        console.log('HELP', response)
         this.cd.detectChanges();
-        // this.filteredGroups = this.groups
         if (Array.isArray(this.groups)) {
           this.filterState(this.selectedState);
         }
@@ -77,7 +71,6 @@ export class GroupListComponent implements OnInit {
       },
       complete: () => {
         this.filterState(this.selectedState);
-        console.log("COMPLETE")
       }
     });
   }
@@ -85,7 +78,6 @@ export class GroupListComponent implements OnInit {
   showDialog(groupData: any) {
     this.display = true;
     this.selectedGroup = groupData;
-    console.log('Show Dialog', this.display);
   }
 
   filterState(state: string) {
@@ -109,10 +101,7 @@ export class GroupListComponent implements OnInit {
 
   close(evt: boolean) {
     this.display = false;
-    console.log('close', this.display);
-
     this.getGroups();
-    // this.filterState(this.selectedState);
   }
 
   selectGroup(group: Group) {

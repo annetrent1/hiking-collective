@@ -27,7 +27,6 @@ export class MemberListComponent implements OnInit {
   ) {
     if (this.activatedRoute.snapshot.params.GroupId) {
       this.GroupId = this.activatedRoute.snapshot.params.GroupId;
-      console.log('GROUP ID', this.GroupId);
     }
     this.getGroupMember();
   }
@@ -37,7 +36,6 @@ export class MemberListComponent implements OnInit {
       next: (response: Group) => {
         this.group = response;
         this.members = response.Members;
-        console.log('MEMBER CHECK', this.members);
       },
       error: () => {
         this.messageService.add({
