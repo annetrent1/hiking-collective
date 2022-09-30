@@ -23,7 +23,6 @@ export class GroupsService {
   ) {}
 
   setSelectedGroup(group: Group) {
-    console.log('select group service', group);
     this.selectedGroup$.next(group);
   }
 
@@ -69,7 +68,7 @@ export class GroupsService {
       group,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('Add group RESULT', results);
     return results;
   }
 
@@ -79,17 +78,16 @@ export class GroupsService {
       group,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('edit group RESULT', results);
     return results;
   }
 
   deleteGroup(groupId: number): Observable<any> {
-    console.log('delete url: ', `${groupsURL}/${groupId}`);
     const results = this.http.delete(
       `${groupsURL}/${groupId}`,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('delete group RESULT', results);
     return results;
   }
 
@@ -99,7 +97,7 @@ export class GroupsService {
       member,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('add member RESULT', results);
     return results;
   }
 
@@ -109,7 +107,7 @@ export class GroupsService {
       member,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('edit member RESULT', results);
     return results;
   }
 
@@ -118,7 +116,7 @@ export class GroupsService {
       `${groupsURL}/${groupId}/members/${memberId}`,
       this.jsonContentTypeHeaders
     );
-    console.log('RESULT', results);
+    console.log('delete member RESULT', results);
     return results;
   }
 }
