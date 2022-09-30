@@ -92,7 +92,6 @@ export class MemberModalComponent implements OnInit {
     if (this.isValid()) {
       this.groupService.editMember(formValues, this.groupId).subscribe(
         () => {
-          // this.router.navigate([`members/${this.groupId}`]);
           this.closeModal();
           this.messageService.add({
             severity: 'success',
