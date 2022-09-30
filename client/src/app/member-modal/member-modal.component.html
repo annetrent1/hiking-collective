@@ -1,4 +1,4 @@
-<p-dialog header="Add New Hiker" [(visible)]="display" (onHide)="closeModal()">
+<p-dialog header="{{ isNewMember ? 'Add Hiker' : 'Edit Hiker' }}" [(visible)]="display" (onHide)="closeModal()">
   <form
     [formGroup]="memberForm"
     (ngSubmit)="

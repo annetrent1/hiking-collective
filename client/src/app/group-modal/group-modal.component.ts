@@ -143,12 +143,7 @@ export class GroupModalComponent implements OnInit {
     if (this.isValid()) {
       this.groupService.editGroup(formValues).subscribe(
         (response: any) => {
-          console.log('edit response', response);
           this.groupService.groups$.next(formValues);
-          // this.selectedState = formValues.StateName;
-
-          this.router.navigate([`groups`]);
-          this.router.navigate([`groups/${this.selectedState}`]);
           this.messageService.add({
             severity: 'success',
             summary: 'Confirmed',
