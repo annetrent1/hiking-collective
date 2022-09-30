@@ -1,0 +1,85 @@
+<p-dialog header="{{ isNewMember ? 'Add Hiker' : 'Edit Hiker' }}" [(visible)]="display" (onHide)="closeModal()">
+  <form
+    [formGroup]="memberForm"
+    (ngSubmit)="
+      isNewMember ? onSubmit(memberForm.value) : onUpdate(memberForm.value)
+    "
+    class="flex flex-column gap-3"
+  >
+    <span class="flex flex-column">
+      <label for="MemberName">Hiker name</label>
+      <input
+        id="MemberName"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberName"
+      />
+      <label
+        for="GroupName"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberName'].valid && memberForm.controls['MemberName'].touched"
+        >Please enter hiker's name</label
+      >
+    </span>
+    <span class="flex flex-column">
+      <label for="MemberPhone">Hiker phone</label>
+      <input
+        id="MemberPhone"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberPhone"
+      />
+      <label
+        for="MemberPhone"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberPhone'].valid && memberForm.controls['MemberPhone'].touched"
+        >Please enter hiker's phone</label
+      >
+    </span>
+    <span class="flex flex-column">
+      <label for="member-email">Hiker email</label>
+      <input
+        id="member-email"
+        pInputText
+        type="text"
+        pInputText
+        formControlName="MemberEmail"
+      />
+      <label
+        for="MemberEmail"
+        class="validate"
+        *ngIf="!memberForm.controls['MemberEmail'].valid && memberForm.controls['MemberEmail'].touched"
+        >Please enter hiker's email</label
+      >
+    </span>
+    <div class="flex justify-content-between">
+      <div>
+        <button
+          *ngIf="!isNewMember"
+          pButton
+          type="button"
+          (click)="deleteMember($event)"
+          label="Delete"
+          class="p-button-danger"
+        ></button>
+      </div>
+      <div class="flex gap-1">
+        <button
+          pButton
+          type="reset"
+          (click)="closeModal()"
+          label="Cancel"
+          class="p-button-secondary"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="{{ isNewMember ? 'Add New Hiker' : 'Save' }}"
+        ></button>
+      </div>
+    </div>
+    <p-confirmPopup></p-confirmPopup>
+  </form>
+</p-dialog>

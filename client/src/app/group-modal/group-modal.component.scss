@@ -1,0 +1,14 @@
+.p-float-label {
+  margin: 20px 0;
+}
+
+:host ::ng-deep {
+  .p-dialog {
+    width: 50%;
+    max-width: 400px; 
+  }
+}
+
+.validate {
+  color: red;
+}

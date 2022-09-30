@@ -1,0 +1,14 @@
+h1 {
+  font-weight:800;
+  font-size: 3em;
+  text-align: center;
+}
+
+h1 a:visited {
+  color: black;
+}
+
+h1 a:hover {
+  color: rgb(42, 44, 113);
+  transform: scale(110%);
+}

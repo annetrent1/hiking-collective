@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { State } from '../models/states';
 import { StatesService } from '../services/states.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { StatesService } from '../services/states.service';
   styleUrls: ['./state-list.component.scss']
 })
 export class StateListComponent implements OnInit {
-  states = [];
+  states!: State[];
   
   constructor(private statesService: StatesService) { }
 
@@ -16,6 +17,7 @@ export class StateListComponent implements OnInit {
       next: (response) => {
         this.states = response;
         console.log("STATES: ", response);
+        console.log("STATES: ", this.states);
       },
       error: () => {
         console.log('oops');

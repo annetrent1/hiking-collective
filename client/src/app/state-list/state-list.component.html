@@ -1,7 +1,35 @@
-<a routerLink="/groups"><button>View all groups</button></a>
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim praesentium similique provident! Placeat dignissimos consequatur odit illo perferendis, inventore laudantium doloribus dolorem autem expedita cumque rem id animi dolore numquam.</p>
-<blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, autem ratione!</blockquote>
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ullam repellat reprehenderit et laborum accusantium quae qui? Dicta necessitatibus accusantium expedita fugiat blanditiis fuga consequuntur voluptatem eos, quidem omnis similique.</p>
-<!-- <section *ngFor="let state of states"> -->
-  <app-state-card *ngFor="let state of states" [state]="state"></app-state-card>
-<!-- </section> -->
+<p>
+  This is the place for those who have been hiking for years, their whole lives,
+  or are just beginning. Here, you can connect with other hikers easily wherever
+  you are. We understand that those who love hiking are free spirits, and we
+  want people to maintain that freedom. You can find others who love to explore
+  nature, escape to beautiful landscapes, and discover new places with people
+  who will appreciate it as much as you do.
+</p>
+<figure>
+  <blockquote>
+      <p>"Hiking is not escapism; it’s realism. The people who choose to spend time outdoors are not running away from anything; we are returning to where we belong"</p>
+  </blockquote>
+  <figcaption>- Jennifer Pharr Davis</figcaption>
+</figure>
+<p>
+  Across all of the world are some of the most wondrous things. The most
+  unexpected places hold some of the most beautiful sights in the world.
+  Catching the perfect sunrise in the morning while on a mountaintop, or hearing
+  the ocean as you drift to sleep next to a campfire.
+</p>
+<button
+  pButton
+  routerLink="groups"
+  class="p-button-text"
+  icon="pi pi-angle-right"
+  iconPos="right"
+>
+  View all groups
+</button>
+<app-state-card
+  *ngFor="let state of states; index as i"
+  [state]="state"
+  class="state-card flex flex-column"
+  [left]="i % 2 === 0 ? true : false"
+></app-state-card>
