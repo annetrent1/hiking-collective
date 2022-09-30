@@ -10,7 +10,7 @@
       <h2>{{ group?.GroupName }} in {{ group?.StateName }}</h2>
       <p-badge
         value="{{ group?.Members?.length }}/{{ group?.MaxGroupSize }}"
-        severity="success"
+        severity="{{isMaxCapacity() ? 'success' :'warning'}}"
       ></p-badge>
       <!-- ngClass="{{group.Members.length < group.MaxGroupSize ? 'br-green-400' : 'surface-400'}}" -->
     </header>
@@ -24,6 +24,7 @@
         label="Add Hiker"
         icon="pi pi-plus"
         iconPos="left"
+        [disabled]="!isMaxCapacity()"
         (click)="showDialog('')"
       ></p-button>
     </div>

@@ -37,7 +37,7 @@
         <header class="flex justify-content-between align-items-center">
           <p-badge
             value="{{ group.Members.length }}/{{ group.MaxGroupSize }}"
-            severity="success"
+            severity="{{isMaxCapacity(group) ? 'success' :'warning'}}"
             ></p-badge>
             <!-- ngClass="{{group.Members.length < group.MaxGroupSize ? 'br-green-400' : 'surface-400'}}" -->
           <div class="flex flex-column header-container">

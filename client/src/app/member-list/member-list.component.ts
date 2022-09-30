@@ -65,4 +65,8 @@ export class MemberListComponent implements OnInit {
   back() {
     this.location.back();
   }
+
+  isMaxCapacity() {
+    return this.members.length < this.group.MaxGroupSize;
+  }
 }

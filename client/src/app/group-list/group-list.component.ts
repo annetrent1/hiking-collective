@@ -118,4 +118,8 @@ export class GroupListComponent implements OnInit {
   selectGroup(group: Group) {
     this.groupsService.setSelectedGroup(group);
   }
+
+  isMaxCapacity(group: any) {
+    return group.Members.length < group.MaxGroupSize;
+  }
 }
